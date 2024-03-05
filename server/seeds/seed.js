@@ -11,7 +11,7 @@ db.once('open', async () => {
     try {
         await User.insertMany(userData)
     } catch (err) {
-        console.err(err)
+        console.log(err)
     }
 
     console.log('all done!')

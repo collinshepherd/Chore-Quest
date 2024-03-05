@@ -1,21 +1,34 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, Decimal128 } = require('mongoose')
 const bcrypt = require('bcrypt')
 
+function getPrice(balance) {
+    return (balance / 100).toFixed(2)
+}
+
+function setPrice(balance) {
+    return balance * 100
+}
+
 const userSchema = new Schema({
-    username: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
     password: {
         type: String,
-        required: true,
+        minLength: 4,
+        maxLength: 30,
+    },
+    age: {
+        type: Number,
+    },
+    balance: {
+        type: Number,
+        set: setPrice,
+        get: getPrice,
+    },
+    roles: {
+        type: Array,
     },
 })
 

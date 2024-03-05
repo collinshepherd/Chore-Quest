@@ -1,16 +1,22 @@
 [
   {
-    "username": "Billy",
-    "email": "billy@gmail.com",
-    "password": "billy123!"
+    "name": "Billy",
+    "password": "billy123!",
+    "age": 10,
+    "balance": 0.0,
+    "roles": ["Kid"]
   },
   {
-    "username": "Johnny",
-    "email": "johnny@gmail.com",
-    "password": "johnny123!"
+    "name": "Johnny",
+    "password": "johnny123!",
+    "age": 10,
+    "balance": 10.50,
+    "roles": ["Kid"]
   },  {
-    "username": "Adam",
-    "email": "adam@gmail.com",
-    "password": "adam123!"
+    "name": "Adam",
+    "password": "adam123!",
+    "age": 10,
+    "balance": 10.50,
+    "roles": ["Parent"]
   }
 ]
