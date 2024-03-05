@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { getPrice, setPrice } = require('./User');
 
 const taskSchema = new Schema({
     listName: {
@@ -11,6 +12,8 @@ const taskSchema = new Schema({
     },
     value: {
         type: Number,
+        set: setPrice,
+        get: getPrice,
     },
     description: {
         type: String,
