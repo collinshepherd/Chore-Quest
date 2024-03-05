@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, Types } = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('./User')
 // const Task = require('./Task');

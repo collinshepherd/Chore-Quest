@@ -1,30 +1,40 @@
 const db = require('../config/connection')
 const { User, Account } = require('../models')
-const cleanDB = require('./cleanDB')
 
 // Requiring data from json files
 const userData = require('./userData.json')
 const accountData = require('./accountData.json')
 
 db.once('open', async () => {
-    await cleanDB('User', 'users')
+    User.collection.drop()
+    Account.collection.drop()
 
     // bulk creating data
     try {
-        // Creating Users
-        const users = await User.insertMany(userData)
+        // Creating the new account
+        const newAccount = await Account.insertMany(accountData)
+
+        // Adding accountID to the users before they are created
+        const updatedUsers = userData.map((user) => ({
+            ...user,
+            accountId: newAccount[0]._id,
+        }))
+
+        // Creating Users with the new accountID
+        const users = await User.insertMany(updatedUsers)
 
         // Taking their ids to add to the account plan
         const userIds = users.map((user) => user._id)
 
-        // Creating a new object with the user ids inside
-        const newAccount = {
-            ...accountData,
-            users: userIds,
-        }
-
-        // Creating the new account
-        await Account.insertMany(newAccount)
+        // Adding the new users to the account
+        await Account.findOneAndUpdate(
+            {
+                _id: newAccount[0]._id,
+            },
+            {
+                $push: { users: userIds },
+            }
+        )
     } catch (err) {
         console.log(err)
     }
