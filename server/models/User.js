@@ -1,10 +1,12 @@
 const { Schema, model, Decimal128 } = require('mongoose')
 const bcrypt = require('bcrypt')
 
+// getter for the balance property that allows us to keep the decimals for the currency correctly.
 function getPrice(balance) {
     return (balance / 100).toFixed(2)
 }
 
+// setter that will set the balance to cents instead of dollars and cents
 function setPrice(balance) {
     return balance * 100
 }

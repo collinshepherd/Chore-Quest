@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
-const User = require('./User');
+const { Schema, model } = require('mongoose')
+const bcrypt = require('bcrypt')
+const User = require('./User')
 // const Task = require('./Task');
 
 const accountSchema = new Schema({
@@ -18,9 +18,10 @@ const accountSchema = new Schema({
         type: String,
         required: true,
     },
-    users: [User.schema],
-    tasks: [Task.schema],
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 })
+
+// tasks: [Task.schema],
 
 // hash user password
 accountSchema.pre('save', async function (next) {
@@ -39,4 +40,4 @@ accountSchema.methods.isCorrectPassword = async function (password) {
 
 const Account = model('Account', accountSchema)
 
-module.exports = Account;
+module.exports = Account
