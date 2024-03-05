@@ -32,6 +32,9 @@ const userSchema = new Schema({
     roles: {
         type: Array,
     },
+    accountId: {
+        type: Schema.Types.ObjectId,
+    },
 })
 
 // hash user password

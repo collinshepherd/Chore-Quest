@@ -1,5 +1,4 @@
-const { Schema, model } = require('mongoose');
-const { getPrice, setPrice } = require('./User');
+const { Schema, model } = require('mongoose')
 
 const taskSchema = new Schema({
     listName: {
@@ -12,8 +11,8 @@ const taskSchema = new Schema({
     },
     value: {
         type: Number,
-        set: setPrice,
-        get: getPrice,
+        set: (num) => num * 100,
+        get: (num) => num / 100,
     },
     description: {
         type: String,
@@ -22,8 +21,8 @@ const taskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category',
     },
-});
+})
 
-const Task = model('Task', taskSchema);
+const Task = model('Task', taskSchema)
 
-module.exports = Task;
+module.exports = Task
