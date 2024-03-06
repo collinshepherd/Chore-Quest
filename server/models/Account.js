@@ -1,7 +1,9 @@
 const { Schema, model, Types } = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('./User')
-// const Task = require('./Task');
+const Task = require('./Task')
+
+// Bring up masterList to front end people
 
 const accountSchema = new Schema({
     familyName: {
@@ -19,6 +21,7 @@ const accountSchema = new Schema({
         required: true,
     },
     users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    masterList: [{ type: Schema.Types.ObjectId, ref: 'Task' }],
 })
 
 // tasks: [Task.schema],
