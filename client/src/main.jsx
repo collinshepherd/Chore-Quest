@@ -9,7 +9,15 @@ import Homepage from './pages/Homepage.jsx'
 import Signup from './pages/Signup.jsx'
 // import Login from './pages/Login.jsx'
 import AddUser from './pages/AddUser.jsx'
-import AddTask from './pages/AddTask.jsx'
+import AddTaskForm from './pages/AddTaskForm.jsx'
+
+// Remove for production
+// This allows apollo to give more detailed error messages
+import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev'
+
+loadDevMessages()
+loadErrorMessages()
+// Remove to here for production
 
 const router = createBrowserRouter([
     {
@@ -35,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addTask',
-                element: <AddTask />,
+                element: <AddTaskForm />,
             },
         ],
     },
