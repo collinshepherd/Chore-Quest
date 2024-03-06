@@ -35,8 +35,6 @@ export const ADD_USER = gql`
     $name: String!
     $password: String!
     $age: Int
-    $role:
-    # COME BACK TO THIS ^ 
   ) {
     addAccount(
       email: $email
