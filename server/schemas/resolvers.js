@@ -35,9 +35,11 @@ const resolvers = {
                 .populate('masterList')
                 .exec()
         },
-        Account: async (parent, { _id }) => {
+        Account: async () => {
+            let testId = '65e7df94735fbeea09d4b015'
+
             // Get and return a single account from the account collection
-            return await Account.findOne({ _id: _id })
+            return await Account.findOne({ _id: testId })
                 .populate('users')
                 .populate('masterList')
                 .exec()

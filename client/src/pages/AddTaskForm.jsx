@@ -1,20 +1,40 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ADD_TASK } from '../utils/mutations'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import { QUERY_USERS_IN_ACCOUNT } from '../utils/queries'
 
 function AddTaskForm() {
     // Keeping track of the form state
-    const [formState, setFormState] = useState({ taskName: '' })
+    const [formState, setFormState] = useState({
+        taskName: '',
+        assignedUser: '',
+    })
     // Mutation to add a task to the database
-    const [addTask, { error, data }] = useMutation(ADD_TASK)
+    const [addTask, { error }] = useMutation(ADD_TASK)
+    const { data } = useQuery(QUERY_USERS_IN_ACCOUNT, {
+        fetchPolicy: 'network-only',
+    })
+    // const accountUsers = data.Account.users.map((user) => {
+    //     return user.name
+    // })
+
+    useEffect(() => {
+        console.log(data)
+        if (data) {
+            console.log(data.Account.users)
+        }
+    }, [])
 
     // handler for when the user submits the form
     const handleFormSubmit = async (event) => {
         event.preventDefault()
-        const mutationResponse = await addTask({
-            variables: { taskName: formState.taskName },
-        })
-        console.log(mutationResponse)
+        console.log(formState)
+        // const mutationResponse = await addTask({
+        //     variables: { taskName: formState.taskName },
+        // })
+        // console.log(mutationResponse)
     }
 
     // change handler so when the user inputs something into the form the formState is updated
@@ -22,48 +42,40 @@ function AddTaskForm() {
         const { name, value } = event.target
         setFormState({
             ...formState,
-            taskName: value,
+            [name]: value,
         })
     }
 
     return (
         <>
-            <h1>Add A Task</h1>
-            <div className="border border-black">
-                <form onSubmit={handleFormSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="taskName" className="form-label">
-                            New Task Name
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="taskName"
-                            aria-describedby="taskName"
-                            onChange={handleChange}
-                        />
-                        <div id="taskHelp" className="form-text">
-                            Make the task so cool!
-                        </div>
-                    </div>
-                    <div className="mb-3 form-check">
-                        <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="exampleCheck1"
-                        />
-                        <label
-                            className="form-check-label"
-                            htmlFor="exampleCheck1"
-                        >
-                            Check me out
-                        </label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
-            </div>
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicTask">
+                    <Form.Label>New Task Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter new task"
+                        name="taskName"
+                        onChange={handleChange}
+                    />
+                    <Form.Text className="text-muted">
+                        Make the task so cool!
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Select
+                    aria-label="Default select example"
+                    name="assignedUser"
+                    onChange={handleChange}
+                >
+                    <option>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </Form.Select>
+                <Button className="mb-3" variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
         </>
     )
 }

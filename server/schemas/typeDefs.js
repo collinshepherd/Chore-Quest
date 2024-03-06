@@ -30,7 +30,7 @@ type Query {
     User(_id: ID!): User
     UserTasks(_id: ID!): [Task]
     Accounts: [Account]
-    Account(_id: ID!): Account
+    Account: Account
     AllUsersInAccount(_id: ID!): [User]
     AllTasksInAccount(_id: ID!): [Task]
     Tasks: [Task]
