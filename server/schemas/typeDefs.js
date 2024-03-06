@@ -14,8 +14,8 @@ type Account {
   familyName: String!
   email: String!
   password: String!
-  users: [ID]
-  masterList: [ID]
+  users: [User]
+  masterList: [Task]
 }
 
 type Task {
@@ -31,6 +31,8 @@ type Query {
     UserTasks(_id: ID!): [Task]
     Accounts: [Account]
     Account(_id: ID!): Account
+    AllUsersInAccount(_id: ID!): [User]
+    AllTasksInAccount(_id: ID!): [Task]
     Tasks: [Task]
     Task(_id: ID!): Task
   }
