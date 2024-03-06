@@ -27,10 +27,10 @@ type Task {
 
 type Query {
     Users: [User]
-    User(_id: ID!): User
+    User(name: String!): User
     UserTasks(_id: ID!): [Task]
     Accounts: [Account]
-    Account(_id: ID!): Account
+    Account: Account
     AllUsersInAccount(_id: ID!): [User]
     AllTasksInAccount(_id: ID!): [Task]
     Tasks: [Task]
@@ -42,7 +42,7 @@ type Mutation {
     accountLogin(email: String!, password: String!): Account
     createUser(name: String!, password: String!, accountId: ID!): User
     userLogin(name: String!, password: String!): User
-    addTask(taskName: String!): Task
+    addTask(taskName: String!, assignedUser: ID!): Task
   }`
 
 module.exports = typeDefs

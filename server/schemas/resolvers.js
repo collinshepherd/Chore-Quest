@@ -11,9 +11,10 @@ const resolvers = {
             // Get and return all documents from the classes collection
             return await User.find({})
         },
-        User: async (parent, { _id }) => {
+        User: async (parent, { name }) => {
+            let testId = '65e7df94735fbeea09d4b015'
             // Get and return a single user from the user collection
-            const user = await User.findOne({ _id: _id })
+            const user = await User.findOne({ name: name, accountId: testId })
 
             return user
         },
@@ -35,9 +36,11 @@ const resolvers = {
                 .populate('masterList')
                 .exec()
         },
-        Account: async (parent, { _id }) => {
+        Account: async () => {
+            let testId = '65e7df94735fbeea09d4b015'
+
             // Get and return a single account from the account collection
-            return await Account.findOne({ _id: _id })
+            return await Account.findOne({ _id: testId })
                 .populate('users')
                 .populate('masterList')
                 .exec()
@@ -108,8 +111,11 @@ const resolvers = {
 
             return user
         },
-        addTask: async (parent, task) => {
-            const newTask = await Task.create(task)
+        addTask: async (parent, { taskName, assignedUser }) => {
+            const newTask = await Task.create({
+                taskName: taskName,
+                assignedUser: assignedUser,
+            })
 
             return newTask
         },
