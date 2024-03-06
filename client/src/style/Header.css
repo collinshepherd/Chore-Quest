@@ -1,16 +1,15 @@
-.bg-dark {
-    background-color: #399E5A;
+.header-container {
+    background-color: #399e5a;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .abril-fatface-regular {
-    font-family: "Abril Fatface", serif;
+    font-family: 'Abril Fatface', serif;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 1px;
-    color: #B57F50;
+    color: #b57f50;
     -webkit-text-stroke: black;
     -webkit-text-stroke-width: 1px;
-  }
-  
+}
