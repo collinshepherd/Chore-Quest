@@ -11,15 +11,15 @@ const resolvers = {
             // Get and return all documents from the classes collection
             return await User.find({})
         },
-        User: async (parent, id) => {
+        User: async (parent, { _id }) => {
             // Get and return a single user from the user collection
-            const user = await User.findOne({ _id: id })
+            const user = await User.findOne({ _id: _id })
 
             return user
         },
-        UserTasks: async (parent, id) => {
+        UserTasks: async (parent, { _id }) => {
             // Taking the passed id and creating that into a mongoose object id
-            const userId = new ObjectId(id._id)
+            const userId = new ObjectId(_id)
 
             // Finding all tasks the user has assigned to it
             const userTasks = await Task.find({
@@ -31,10 +31,22 @@ const resolvers = {
         Accounts: async () => {
             // Get and return all documents from the account collection
             return await Account.find({})
+                .populate('users')
+                .populate('masterList')
+                .exec()
         },
-        Account: async (parent, { id }) => {
+        Account: async (parent, { _id }) => {
             // Get and return a single account from the account collection
-            return await Account.findOne({ _id: id })
+            return await Account.findOne({ _id: _id })
+                .populate('users')
+                .populate('masterList')
+                .exec()
+        },
+        AllUsersInAccount: async (parent, { _id }) => {
+            return await Account.findById({ _id }).populate('users')
+        },
+        AllTasksInAccount: async (parent, { _id }) => {
+            return await Account.findById({ _id }).populate('masterList')
         },
         Tasks: async () => {
             // Get and return all documents from the Task collection
