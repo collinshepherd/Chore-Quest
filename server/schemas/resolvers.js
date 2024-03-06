@@ -45,6 +45,63 @@ const resolvers = {
             return await Task.findOne({ _id: id })
         },
     },
+    Mutation: {
+        createAccount: async (parent, { familyName, email, password }) => {
+            const newAccount = await Account.create({
+                familyName,
+                email,
+                password,
+            })
+
+            return newAccount
+        },
+        accountLogin: async (parent, { email, password }) => {
+            const account = await Account.findOne({ email })
+
+            if (!account) {
+                console.log('no account')
+                throw AuthenticationError
+            }
+
+            const correctPw = await account.isCorrectPassword(password)
+
+            if (!correctPw) {
+                console.log('no password')
+
+                throw AuthenticationError
+            }
+
+            return account
+        },
+        createUser: async (parent, { name, password, accountId }, context) => {
+            const newUser = User.create({ name, password, accountId })
+
+            return newUser
+        },
+        userLogin: async (parent, { name, password }) => {
+            const user = await User.findOne({ name })
+
+            if (!user) {
+                console.log('no user')
+                throw AuthenticationError
+            }
+
+            const correctPw = await user.isCorrectPassword(password)
+
+            if (!correctPw) {
+                console.log('no password')
+
+                throw AuthenticationError
+            }
+
+            return user
+        },
+        addTask: async (parent, task) => {
+            const newTask = await Task.create(task)
+
+            return newTask
+        },
+    },
 }
 
 module.exports = resolvers

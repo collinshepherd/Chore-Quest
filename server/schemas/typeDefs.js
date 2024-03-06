@@ -33,6 +33,14 @@ type Query {
     Account(_id: ID!): Account
     Tasks: [Task]
     Task(_id: ID!): Task
+  }
+  
+type Mutation {
+    createAccount(familyName: String!, email: String!, password: String!): Account
+    accountLogin(email: String!, password: String!): Account
+    createUser(name: String!, password: String!, accountId: ID!): User
+    userLogin(name: String!, password: String!): User
+    addTask(taskName: String!): Task
   }`
 
 module.exports = typeDefs
