@@ -5,8 +5,8 @@ const taskSchema = new Schema({
         type: String,
         required: true,
     },
-    taskName: {
-        type: String,
+    tasks: {
+        type: Array,
         required: true,
     },
     value: {
