@@ -14,20 +14,21 @@ type Account {
   familyName: String!
   email: String!
   password: String!
-
+  users: [ID]
+  masterList: [ID]
 }
 
 type Task {
-  listName: String!
-  tasks: [String]!
-  value: Int
-  description: String
-  ageRange: ID
+  _id: ID!
+  taskName: String!
+  assignedUser: ID
+  complete: Boolean
 }
 
 type Query {
     Users: [User]
     User(_id: ID!): User
+    UserTasks(_id: ID!): [Task]
     Accounts: [Account]
     Account(_id: ID!): Account
     Tasks: [Task]
