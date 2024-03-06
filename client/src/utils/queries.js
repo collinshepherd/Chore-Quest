@@ -9,3 +9,10 @@ export const QUERY_USERS_IN_ACCOUNT = gql`
         }
     }
 `
+export const QUERY_USERS_ID_FROM_NAME = gql`
+    query User($name: String!) {
+        User(name: $name) {
+            _id
+        }
+    }
+`

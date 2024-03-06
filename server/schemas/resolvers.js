@@ -11,9 +11,10 @@ const resolvers = {
             // Get and return all documents from the classes collection
             return await User.find({})
         },
-        User: async (parent, { _id }) => {
+        User: async (parent, { name }) => {
+            let testId = '65e7df94735fbeea09d4b015'
             // Get and return a single user from the user collection
-            const user = await User.findOne({ _id: _id })
+            const user = await User.findOne({ name: name, accountId: testId })
 
             return user
         },
@@ -110,8 +111,11 @@ const resolvers = {
 
             return user
         },
-        addTask: async (parent, task) => {
-            const newTask = await Task.create(task)
+        addTask: async (parent, { taskName, assignedUser }) => {
+            const newTask = await Task.create({
+                taskName: taskName,
+                assignedUser: assignedUser,
+            })
 
             return newTask
         },

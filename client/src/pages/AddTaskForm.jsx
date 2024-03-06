@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { ADD_TASK } from '../utils/mutations'
-import { useMutation, useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { QUERY_USERS_IN_ACCOUNT } from '../utils/queries'
+import {
+    QUERY_USERS_IN_ACCOUNT,
+    QUERY_USERS_ID_FROM_NAME,
+} from '../utils/queries'
 
 function AddTaskForm() {
     // Keeping track of the form state
@@ -13,28 +16,40 @@ function AddTaskForm() {
     })
     // Mutation to add a task to the database
     const [addTask, { error }] = useMutation(ADD_TASK)
-    const { data } = useQuery(QUERY_USERS_IN_ACCOUNT, {
-        fetchPolicy: 'network-only',
+    const { loading, arg, data } = useQuery(QUERY_USERS_IN_ACCOUNT)
+
+    const [
+        getUserId,
+        { data: otherData, loading: otherLoading, error: otherError },
+    ] = useLazyQuery(QUERY_USERS_ID_FROM_NAME, {
+        variables: { name: formState.assignedUser },
     })
-    // const accountUsers = data.Account.users.map((user) => {
-    //     return user.name
-    // })
 
-    useEffect(() => {
-        console.log(data)
-        if (data) {
-            console.log(data.Account.users)
-        }
-    }, [])
+    // Variable to hold all the names of the users
+    let usersInAccount
 
+    // If the data isn't received yet this if statement will prevent an error
+    if (loading) {
+        console.log('loading')
+    } else {
+        usersInAccount = data.Account.users.map((user) => {
+            return user.name
+        })
+    }
     // handler for when the user submits the form
     const handleFormSubmit = async (event) => {
         event.preventDefault()
         console.log(formState)
-        // const mutationResponse = await addTask({
-        //     variables: { taskName: formState.taskName },
-        // })
-        // console.log(mutationResponse)
+
+        const userId = await getUserId()
+
+        const mutationResponse = await addTask({
+            variables: {
+                taskName: formState.taskName,
+                assignedUser: userId.data.User._id,
+            },
+        })
+        console.log(mutationResponse)
     }
 
     // change handler so when the user inputs something into the form the formState is updated
@@ -45,39 +60,41 @@ function AddTaskForm() {
             [name]: value,
         })
     }
+    if (loading) {
+        return <p>Loading....</p>
+    } else {
+        return (
+            <>
+                <Form onSubmit={handleFormSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicTask">
+                        <Form.Label>New Task Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter new task"
+                            name="taskName"
+                            onChange={handleChange}
+                        />
+                        <Form.Text className="text-muted">
+                            Make the task so cool!
+                        </Form.Text>
+                    </Form.Group>
 
-    return (
-        <>
-            <Form onSubmit={handleFormSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicTask">
-                    <Form.Label>New Task Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter new task"
-                        name="taskName"
+                    <Form.Select
+                        aria-label="Default select example"
+                        name="assignedUser"
                         onChange={handleChange}
-                    />
-                    <Form.Text className="text-muted">
-                        Make the task so cool!
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Select
-                    aria-label="Default select example"
-                    name="assignedUser"
-                    onChange={handleChange}
-                >
-                    <option>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </Form.Select>
-                <Button className="mb-3" variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        </>
-    )
+                    >
+                        <option>Open this select menu</option>
+                        {usersInAccount.map((user) => (
+                            <option key={user}>{user}</option>
+                        ))}
+                    </Form.Select>
+                    <Button className="mb-3" variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </>
+        )
+    }
 }
-
 export default AddTaskForm
