@@ -65,7 +65,8 @@ function AddTaskForm() {
     } else {
         return (
             <>
-                <Form onSubmit={handleFormSubmit}>
+                <h2>Add a Quest</h2>
+                <Form onSubmit={handleFormSubmit} className='form-width'>
                     <Form.Group className="mb-3" controlId="formBasicTask">
                         <Form.Label>New Task Name</Form.Label>
                         <Form.Control

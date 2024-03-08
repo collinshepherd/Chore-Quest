@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth.js';
-import { ADD_ACCOUNT } from '../utils/mutations';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
+import Auth from '../utils/auth.js'
+import { ADD_ACCOUNT } from '../utils/mutations'
+import { Form, Button, Alert } from 'react-bootstrap';
 
 function Signup(props) {
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -38,10 +39,10 @@ function Signup(props) {
             <Link to="/login">← Go to Login</Link>
 
             <h2>Signup</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div className="">
-                    <label htmlFor="familyName">Family Name:</label>
-                    <input
+            <Form onSubmit={handleFormSubmit} className='form-width'>
+                <Form.Group className='mb-3'>
+                    <Form.Label htmlFor="familyName">Family Name:</Form.Label>
+                    <Form.Control
                         placeholder="Household Name"
                         name="familyName"
                         type="familyName"
@@ -49,10 +50,10 @@ function Signup(props) {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="">
-                    <label htmlFor="email">Email:</label>
-                    <input
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                    <Form.Label htmlFor="email">Email:</Form.Label>
+                    <Form.Control
                         placeholder="youremail@mail.com"
                         name="email"
                         type="email"
@@ -60,10 +61,10 @@ function Signup(props) {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="">
-                    <label htmlFor="pwd">Password:</label>
-                    <input
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                    <Form.Label htmlFor="pwd">Password:</Form.Label>
+                    <Form.Control
                         placeholder="********"
                         name="password"
                         type="password"
@@ -71,11 +72,11 @@ function Signup(props) {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="">
-                    <button type="submit">Create Account</button>
-                </div>
-            </form>
+                </Form.Group>
+                <Button type='submit'variant='dark'>
+                    Create Account
+                </Button>
+            </Form>
         </div>
     );
 }
