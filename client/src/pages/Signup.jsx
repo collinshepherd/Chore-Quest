@@ -22,7 +22,7 @@ function Signup(props) {
         })
         const token = mutationResponse.data.createAccount.token
         Auth.login(token)
-        navigate('addTask')
+        navigate('/addUser')
     }
 
     const handleChange = (event) => {
