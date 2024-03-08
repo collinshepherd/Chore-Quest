@@ -1,48 +1,9 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
 
-class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            emailOrUsername: '',
-            password: '',
-        }
+import { createUser } from '../utils/API';
+import Auth from '../utils/auth';
 
-        this.handleInputChange = this.handleInputChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleInputChange(event) {
-        event.preventDefault()
-        const target = event.target
-        this.setState({
-            [target.name]: target.value,
-        })
-    }
-
-    LoginForm = () => {
-        const [userFormData, setUserFormData] = useState({
-            email: '',
-            password: '',
-        })
-        const [validated] = useState(false)
-        const [showAlert, setShowAlert] = useState(false)
-
-        const handleInputChange = (event) => {
-            const { name, value } = event.target
-            setUserFormData({ ...userFormData, [name]: value })
-        }
-
-        const handleFormSubmit = async (event) => {
-            event.preventDefault()
-
-            // check if form has everything (as per react-bootstrap docs)
-            const form = event.currentTarget
-            if (form.checkValidity() === false) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
 
             try {
                 const response = await loginUser(userFormData)
