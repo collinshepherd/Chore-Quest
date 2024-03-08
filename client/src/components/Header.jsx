@@ -1,7 +1,6 @@
-import React from 'react'
-import { Container, Heading } from 'react-bulma-components'
-import '../style/Header.css'
-
+import React from 'react';
+import { Container, Heading } from 'react-bulma-components';
+import '../style/Header.css';
 
 function Header() {
     return (
@@ -17,7 +16,7 @@ function Header() {
                 </Heading>
             </Container>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;
