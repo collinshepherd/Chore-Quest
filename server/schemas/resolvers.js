@@ -15,7 +15,7 @@ const resolvers = {
             // Get and return all documents from the classes collection
             return await User.find({});
         },
-        User: async (parent, { name }) => {
+        User: async (parent, { name }, context) => {
             // This context.user does not actually refer to a user it is
             // referring to an individual account
             const familyId = context.user._id;
@@ -28,9 +28,9 @@ const resolvers = {
 
             return user;
         },
-        UserTasks: async (parent, { _id }) => {
+        UserTasks: async (parent, args, context) => {
             // Taking the passed id and creating that into a mongoose object id
-            const userId = new ObjectId(_id);
+            const userId = context.user.userId;
 
             // Finding all tasks the user has assigned to it
             const userTasks = await Task.find({

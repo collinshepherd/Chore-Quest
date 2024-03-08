@@ -17,3 +17,14 @@ export const QUERY_USERS_ID_FROM_NAME = gql`
         }
     }
 `;
+
+export const QUERY_USERS_TASK = gql`
+    query UserTasks {
+        UserTasks {
+            _id
+            assignedUser
+            complete
+            taskName
+        }
+    }
+`;
