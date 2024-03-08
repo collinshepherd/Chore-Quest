@@ -1,4 +1,4 @@
-const { signToken, AuthenticationError } = require('../utils/auth')
+const { signToken, signUserToken, AuthenticationError } = require('../utils/auth')
 
 const { mongoose } = require('mongoose')
 const ObjectId = mongoose.mongo.ObjectId
@@ -67,6 +67,8 @@ const resolvers = {
                 password,
             })
 
+            account.familyId = account._id
+            // need to destructure account and pass email, familyName, Id
             const token = signToken(account)
 
             return { account, token }
@@ -87,24 +89,32 @@ const resolvers = {
                 throw AuthenticationError
             }
 
+            account.familyId = account._id
             const token = signToken(account)
 
             return { account, token }
         },
         createUser: async (parent, { name, password, accountId }, context) => {
-            const newUser = User.create({ name, password, accountId })
+            const user = User.create({ name, password, accountId })
 
-            return newUser
+            return user
         },
-        userLogin: async (parent, { name, password }) => {
-            const user = await User.findOne({ name })
+        userLogin: async (parent, { name, password } , context) => {
+            console.log("name", name)
+            console.log("password", password)
 
+            const familyId = context.user
+            
+            const user = await User.findOne({ name: name, accountId: familyId })
+            
+            console.log("user", user)
             if (!user) {
                 console.log('no user')
                 throw AuthenticationError
             }
 
             const correctPw = await user.isCorrectPassword(password)
+            console.log("correct password", correctPw)
 
             if (!correctPw) {
                 console.log('no password')
@@ -112,7 +122,10 @@ const resolvers = {
                 throw AuthenticationError
             }
 
-            return user
+            const userToken = signUserToken(user)
+            console.log(userToken)
+
+            return { user, userToken }
         },
         addTask: async (parent, { taskName, assignedUser }) => {
             const newTask = await Task.create({
