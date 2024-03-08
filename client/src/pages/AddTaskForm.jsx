@@ -42,6 +42,7 @@ function AddTaskForm() {
         console.log(formState);
 
         const userId = await getUserId();
+        console.log(userId);
 
         const mutationResponse = await addTask({
             variables: {
@@ -66,7 +67,7 @@ function AddTaskForm() {
         return (
             <>
                 <h2>Add a Quest</h2>
-                <Form onSubmit={handleFormSubmit} className='form-width'>
+                <Form onSubmit={handleFormSubmit} className="form-width">
                     <Form.Group className="mb-3" controlId="formBasicTask">
                         <Form.Label>New Task Name</Form.Label>
                         <Form.Control
