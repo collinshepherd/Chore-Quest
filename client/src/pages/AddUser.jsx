@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
-function Signup(props) {
+function AddUser(props) {
   const [formState, setFormState] = useState({ name: '', password: '', age: '', role: '' });
   const [addUser] = useMutation(ADD_USER);
 
@@ -46,8 +46,8 @@ function Signup(props) {
         </div>
         <div className="">
           <label htmlFor="role">Role:</label>
-          <select>
-            <option selected value="parent">Parent</option>
+          <select defaultValue="parent">
+            <option value="parent">Parent</option>
             <option value="kid">Kid</option>
           </select>
         </div>
@@ -79,4 +79,4 @@ function Signup(props) {
   );
 }
 
-export default Signup;
+export default AddUser;

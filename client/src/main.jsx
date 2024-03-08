@@ -10,6 +10,7 @@ import Signup from './pages/Signup.jsx'
 import LoginForm from './pages/Login.jsx'
 import AddUser from './pages/AddUser.jsx'
 import AddTaskForm from './pages/AddTaskForm.jsx'
+import Error from './pages/Error'
 
 // Remove for production
 // This allows apollo to give more detailed error messages
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        //   errorElement: <Error />,
+          errorElement: <Error />,
         children: [
             {
                 index: true,
