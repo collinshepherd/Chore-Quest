@@ -90,8 +90,8 @@ function AddTaskForm() {
                             <option key={user}>{user}</option>
                         ))}
                     </Form.Select>
-                    <Button className="mb-3" variant="primary" type="submit">
-                        Submit
+                    <Button variant="dark" type="submit">
+                        Add Task
                     </Button>
                 </Form>
             </>
