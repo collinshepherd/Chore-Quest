@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth';
     const LoginForm = () => {
       const [userFormData, setUserFormData] = useState({ email: '', password: '' });
       const [validated] = useState(false);
       const [showAlert, setShowAlert] = useState(false);
+
+      const navigate = useNavigate()
+
       const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value });
@@ -25,6 +29,7 @@ import Auth from '../utils/auth';
           const { token, user } = await response.json();
           console.log(user);
           Auth.login(token);
+          navigate('/users')
         } catch (err) {
           console.error(err);
           setShowAlert(true);
