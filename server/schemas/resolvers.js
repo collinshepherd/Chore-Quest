@@ -110,7 +110,20 @@ const resolvers = {
         createUser: async (parent, { name, password }, context) => {
             const familyId = context.user.familyId;
 
-            const user = User.create({ name, password, accountId: familyId });
+            const user = await User.create({
+                name,
+                password,
+                accountId: familyId,
+            });
+
+            await Account.findOneAndUpdate(
+                {
+                    _id: familyId,
+                },
+                {
+                    $push: { users: user._id },
+                }
+            );
 
             return user;
         },
@@ -119,10 +132,11 @@ const resolvers = {
             console.log('password', password);
 
             const payloadData = context.user;
+            console.log(payloadData);
 
             const newUser = await User.findOne({
                 name: name,
-                accountId: payloadData.familyId,
+                accountId: payloadData._id,
             });
 
             if (!newUser) {
