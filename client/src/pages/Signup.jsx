@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useMutation } from '@apollo/client'
-import Auth from '../utils/auth.js'
-import { ADD_ACCOUNT } from '../utils/mutations'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth.js';
+import { ADD_ACCOUNT } from '../utils/mutations';
 
 function Signup(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' })
-    const [addAccount] = useMutation(ADD_ACCOUNT)
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [addAccount] = useMutation(ADD_ACCOUNT);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         const mutationResponse = await addAccount({
             variables: {
@@ -19,19 +19,19 @@ function Signup(props) {
                 password: formState.password,
                 familyName: formState.familyName,
             },
-        })
-        const token = mutationResponse.data.createAccount.token
-        Auth.login(token)
-        navigate('/users')
-    }
+        });
+        const token = mutationResponse.data.createAccount.token;
+        Auth.login(token);
+        navigate('/users');
+    };
 
     const handleChange = (event) => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         setFormState({
             ...formState,
             [name]: value,
-        })
-    }
+        });
+    };
 
     return (
         <div className="">
@@ -77,7 +77,7 @@ function Signup(props) {
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
-export default Signup
+export default Signup;

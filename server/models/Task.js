@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const taskSchema = new Schema({
     taskName: {
@@ -13,8 +13,8 @@ const taskSchema = new Schema({
         type: Boolean,
         default: false,
     },
-})
+});
 
-const Task = model('Task', taskSchema)
+const Task = model('Task', taskSchema);
 
-module.exports = Task
+module.exports = Task;
