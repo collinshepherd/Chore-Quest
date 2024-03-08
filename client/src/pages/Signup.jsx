@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, redirect } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import Auth from '../utils/auth.js'
 import { ADD_ACCOUNT } from '../utils/mutations'
@@ -8,9 +8,11 @@ function Signup(props) {
     const [formState, setFormState] = useState({ email: '', password: '' })
     const [addAccount] = useMutation(ADD_ACCOUNT)
 
+    const navigate = useNavigate()
+
     const handleFormSubmit = async (event) => {
         event.preventDefault()
-        const navigate = useNavigate()
+        
         const mutationResponse = await addAccount({
             variables: {
                 email: formState.email,
@@ -20,7 +22,7 @@ function Signup(props) {
         })
         const token = mutationResponse.data.createAccount.token
         Auth.login(token)
-        navigate('/adduser')
+        navigate('addTask')
     }
 
     const handleChange = (event) => {
