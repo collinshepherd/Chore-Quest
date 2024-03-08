@@ -42,7 +42,8 @@ import Auth from '../utils/auth';
       };
       return (
         <>
-          <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <h2>Login</h2>
+          <Form noValidate validated={validated} onSubmit={handleFormSubmit} className='form-width'>
             <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
               Something went wrong with your login credentials!
             </Alert>
@@ -73,8 +74,8 @@ import Auth from '../utils/auth';
             <Button
               disabled={!(userFormData.email && userFormData.password)}
               type='submit'
-              variant='success'>
-              Submit
+              variant='dark'>
+              Login
             </Button>
           </Form>
         </>

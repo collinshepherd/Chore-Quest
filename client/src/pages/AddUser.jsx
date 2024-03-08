@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
+import { Form, Button, Alert } from 'react-bootstrap';
+import '../style/pages.css';
 
 function AddUser(props) {
   const [formState, setFormState] = useState({ name: '', password: '', age: '', role: '' });
@@ -33,48 +35,51 @@ function AddUser(props) {
   return (
     <div className="">
       <h2>Add a Family Member</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="">
-          <label htmlFor="name">Name:</label>
-          <input
+      
+      <Form onSubmit={handleFormSubmit} className='form-width'>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Control
             placeholder="name"
             name="name"
             type="name"
             id="name"
             onChange={handleChange}
           />
-        </div>
-        <div className="">
-          <label htmlFor="role">Role:</label>
-          <select defaultValue="parent">
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor="role">Role</Form.Label>
+          <Form.Select>
+            <option>Choose Profile Role</option>
             <option value="parent">Parent</option>
             <option value="kid">Kid</option>
-          </select>
-        </div>
-        <div className="">
-          <label htmlFor="age">Age (optional):</label>
-          <input
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor="age">Age (optional)</Form.Label>
+          <Form.Control
             placeholder="age"
             name="age"
             type="age"
             id="age"
             onChange={handleChange}
           />
-        </div>
-        <div className="">
-          <label htmlFor="pwd">Personal Passcode:</label>
-          <input
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor="pwd">Personal Passcode</Form.Label>
+          <Form.Control
             placeholder="****"
             name="password"
             type="password"
             id="pwd"
             onChange={handleChange}
           />
-        </div>
-        <div className="">
-          <button type="submit">Create Profile</button>
-        </div>
-      </form>
+        </Form.Group>
+        <Button type="submit" variant="dark">
+          Create Profile
+        </Button>
+      </Form>
+      
     </div>
   );
 }
