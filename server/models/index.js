@@ -1,6 +1,6 @@
 // Adding models to easily export them
-const User = require('./User')
+const User = require('./User');
 const Task = require('./Task');
-const Account = require('./Account')
+const Account = require('./Account');
 
-module.exports = { User, Account, Task }
+module.exports = { User, Account, Task };

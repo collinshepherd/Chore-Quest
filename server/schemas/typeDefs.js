@@ -51,6 +51,6 @@ type Mutation {
     createUser(name: String!, password: String!): User
     userLogin(name: String!, password: String!): UserAuth
     addTask(taskName: String!, assignedUser: ID!): Task
-  }`
+  }`;
 
-module.exports = typeDefs
+module.exports = typeDefs;

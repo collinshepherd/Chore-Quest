@@ -1,43 +1,60 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
-    const LoginForm = () => {
-      const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-      const [validated] = useState(false);
-      const [showAlert, setShowAlert] = useState(false);
+import { useMutation } from '@apollo/client';
+import { ACCOUNT_LOGIN } from '../utils/mutations';
+const LoginForm = () => {
+    const [userFormData, setUserFormData] = useState({
+        email: '',
+        password: '',
+    });
+    const [validated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    // Adding the mutation for loginAccount
+    const [loginAccount, { error }] = useMutation(ACCOUNT_LOGIN);
 
-      const navigate = useNavigate()
+    const navigate = useNavigate();
 
-      const handleInputChange = (event) => {
+    const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value });
-      };
-      const handleFormSubmit = async (event) => {
+    };
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
+
         // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
         }
+
         try {
-          const response = await loginUser(userFormData);
-          if (!response.ok) {
-            throw new Error('something went wrong!');
-          }
-          const { token, user } = await response.json();
-          console.log(user);
-          Auth.login(token);
-          navigate('/users')
+            // Await the creation of the login response
+            const response = await loginAccount({
+                variables: {
+                    email: userFormData.email,
+                    password: userFormData.password,
+                },
+            });
+            // If data is not given back throw an error
+            if (!response.data) {
+                throw new Error('something went wrong!');
+            }
+            // Assign the token
+            const token = response.data.accountLogin.token;
+
+            Auth.login(token);
+            navigate('/users');
         } catch (err) {
-          console.error(err);
-          setShowAlert(true);
+            console.error(err);
+            setShowAlert(true);
         }
         setUserFormData({
-          username: '',
-          email: '',
-          password: '',
+            username: '',
+            email: '',
+            password: '',
         });
       };
       return (
@@ -81,4 +98,4 @@ import Auth from '../utils/auth';
         </>
       );
     };
-    export default LoginForm;
+export default LoginForm;

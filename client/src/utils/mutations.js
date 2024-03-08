@@ -1,15 +1,18 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
-export const LOGIN = gql`
-    mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
+export const ACCOUNT_LOGIN = gql`
+    mutation Mutation($email: String!, $password: String!) {
+        accountLogin(email: $email, password: $password) {
             token
-            Account {
+            account {
                 _id
+                email
+                password
+                familyName
             }
         }
     }
-`
+`;
 
 export const ADD_ACCOUNT = gql`
     mutation Mutation(
@@ -28,7 +31,7 @@ export const ADD_ACCOUNT = gql`
             }
         }
     }
-`
+`;
 
 export const ADD_USER = gql`
     mutation addUser($name: String!, $password: String!, $age: Int) {
@@ -39,7 +42,19 @@ export const ADD_USER = gql`
             }
         }
     }
-`
+`;
+
+export const LOGIN_USER = gql`
+    mutation userLogin($name: String!, $password: String!) {
+        userLogin(name: $name, password: $password) {
+            token
+            user {
+                _id
+                name
+            }
+        }
+    }
+`;
 
 export const ADD_TASK = gql`
     mutation Mutation($taskName: String!, $assignedUser: ID!) {
@@ -48,4 +63,4 @@ export const ADD_TASK = gql`
             taskName
         }
     }
-`
+`;

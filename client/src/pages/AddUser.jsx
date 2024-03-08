@@ -7,30 +7,35 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import '../style/pages.css';
 
 function AddUser(props) {
-  const [formState, setFormState] = useState({ name: '', password: '', age: '', role: '' });
-  const [addUser] = useMutation(ADD_USER);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        name: formState.name,
-        password: formState.password,
-        age: formState.age,
-        role: formState.role,
-      },
+    const [formState, setFormState] = useState({
+        name: '',
+        password: '',
+        age: '',
+        role: '',
     });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-  };
+    const [addUser] = useMutation(ADD_USER);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const mutationResponse = await addUser({
+            variables: {
+                name: formState.name,
+                password: formState.password,
+                age: formState.age,
+                role: formState.role,
+            },
+        });
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
+    };
+
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+      setFormState({
+          ...formState,
+          [name]: value,
+      });
+    };
 
   return (
     <div className="">
