@@ -8,6 +8,7 @@ import App from './App.jsx'
 import Homepage from './pages/Homepage.jsx'
 import Signup from './pages/Signup.jsx'
 import LoginForm from './pages/Login.jsx'
+import User from './pages/User.jsx'
 import AddUser from './pages/AddUser.jsx'
 import AddTaskForm from './pages/AddTaskForm.jsx'
 import Error from './pages/Error'
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <LoginForm />,
+            },
+            {
+                path: '/users',
+                element: <User />,
             },
             {
                 path: '/addUser',

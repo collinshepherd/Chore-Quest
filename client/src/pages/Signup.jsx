@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import Auth from '../utils/auth.js'
 import { ADD_ACCOUNT } from '../utils/mutations'
@@ -22,7 +22,7 @@ function Signup(props) {
         })
         const token = mutationResponse.data.createAccount.token
         Auth.login(token)
-        navigate('/addUser')
+        navigate('/users')
     }
 
     const handleChange = (event) => {
