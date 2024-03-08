@@ -12,18 +12,18 @@ export const LOGIN = gql`
 `
 
 export const ADD_ACCOUNT = gql`
-    mutation addAccount(
+    mutation Mutation(
+        $familyName: String!
         $email: String!
         $password: String!
-        $familyName: String!
     ) {
-        addAccount(
+        createAccount(
+            familyName: $familyName
             email: $email
             password: $password
-            familyName: $familyName
         ) {
             token
-            Account {
+            account {
                 _id
             }
         }

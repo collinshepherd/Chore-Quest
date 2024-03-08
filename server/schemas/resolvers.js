@@ -61,16 +61,15 @@ const resolvers = {
     },
     Mutation: {
         createAccount: async (parent, { familyName, email, password }) => {
-            const newAccount = await Account.create({
+            const account = await Account.create({
                 familyName,
                 email,
                 password,
             })
 
-            console.log(signToken(newAccount))
-            signToken(newAccount)
+            const token = signToken(account)
 
-            return newAccount
+            return { account, token }
         },
         accountLogin: async (parent, { email, password }) => {
             const account = await Account.findOne({ email })
@@ -88,9 +87,9 @@ const resolvers = {
                 throw AuthenticationError
             }
 
-            signToken(account)
+            const token = signToken(account)
 
-            return account
+            return { account, token }
         },
         createUser: async (parent, { name, password, accountId }, context) => {
             const newUser = User.create({ name, password, accountId })
