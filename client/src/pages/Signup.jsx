@@ -12,7 +12,7 @@ function Signup(props) {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault()
-        
+
         const mutationResponse = await addAccount({
             variables: {
                 email: formState.email,
