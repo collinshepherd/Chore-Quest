@@ -12,9 +12,12 @@ const resolvers = {
             return await User.find({})
         },
         User: async (parent, { name }) => {
-            let testId = '65e7df94735fbeea09d4b015'
+            // This context.user does not actually refer to a user it is
+            // referring to an individual account
+            const familyId = context.user._id
+
             // Get and return a single user from the user collection
-            const user = await User.findOne({ name: name, accountId: testId })
+            const user = await User.findOne({ name: name, accountId: familyId })
 
             return user
         },
@@ -36,20 +39,16 @@ const resolvers = {
                 .populate('masterList')
                 .exec()
         },
-        Account: async () => {
-            let testId = '65e7df94735fbeea09d4b015'
+        Account: async (parent, args, context) => {
+            // This context.user does not actually refer to a user it is
+            // referring to an individual account
+            const familyId = context.user._id
 
             // Get and return a single account from the account collection
-            return await Account.findOne({ _id: testId })
+            return await Account.findOne({ _id: familyId })
                 .populate('users')
                 .populate('masterList')
                 .exec()
-        },
-        AllUsersInAccount: async (parent, { _id }) => {
-            return await Account.findById({ _id }).populate('users')
-        },
-        AllTasksInAccount: async (parent, { _id }) => {
-            return await Account.findById({ _id }).populate('masterList')
         },
         Tasks: async () => {
             // Get and return all documents from the Task collection
@@ -68,6 +67,9 @@ const resolvers = {
                 password,
             })
 
+            console.log(signToken(newAccount))
+            signToken(newAccount)
+
             return newAccount
         },
         accountLogin: async (parent, { email, password }) => {
@@ -85,6 +87,8 @@ const resolvers = {
 
                 throw AuthenticationError
             }
+
+            signToken(account)
 
             return account
         },
