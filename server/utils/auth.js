@@ -34,10 +34,11 @@ module.exports = {
         return req
     },
     signToken: function (payload) {
-        
         console.log('it worked', payload)
 
-        return jwt.sign({ data: payload }, secret, { expiresIn: expiration })
+        return jwt.sign({ data: payload }, secret, {
+            expiresIn: expiration,
+        })
     },
     signUserToken: function ({ name, _id }) {
         const payload = { name, _id }

@@ -1,4 +1,8 @@
-const { signToken, signUserToken, AuthenticationError } = require('../utils/auth')
+const {
+    signToken,
+    signUserToken,
+    AuthenticationError,
+} = require('../utils/auth')
 
 const { mongoose } = require('mongoose')
 const ObjectId = mongoose.mongo.ObjectId
@@ -61,17 +65,23 @@ const resolvers = {
     },
     Mutation: {
         createAccount: async (parent, { familyName, email, password }) => {
-            const account = await Account.create({
+            const newAccount = await Account.create({
                 familyName,
                 email,
                 password,
             })
 
-            account.familyId = account._id
             // need to destructure account and pass email, familyName, Id
+            const account = {
+                familyName: newAccount.familyName,
+                email: newAccount.email,
+                familyId: newAccount._id,
+            }
             const token = signToken(account)
 
-            return { account, token }
+            console.log('new account:', newAccount)
+
+            return { account: newAccount, token }
         },
         accountLogin: async (parent, { email, password }) => {
             const account = await Account.findOne({ email })
@@ -94,27 +104,30 @@ const resolvers = {
 
             return { account, token }
         },
-        createUser: async (parent, { name, password, accountId }, context) => {
-            const user = User.create({ name, password, accountId })
+        createUser: async (parent, { name, password }, context) => {
+            const familyId = context.user.familyId
+
+            const user = User.create({ name, password, accountId: familyId })
 
             return user
         },
-        userLogin: async (parent, { name, password } , context) => {
-            console.log("name", name)
-            console.log("password", password)
+        userLogin: async (parent, { name, password }, context) => {
+            console.log('name', name)
+            console.log('password', password)
 
-            const familyId = context.user
-            
-            const user = await User.findOne({ name: name, accountId: familyId })
-            
-            console.log("user", user)
-            if (!user) {
+            const payloadData = context.user
+
+            const newUser = await User.findOne({
+                name: name,
+                accountId: payloadData.familyId,
+            })
+
+            if (!newUser) {
                 console.log('no user')
                 throw AuthenticationError
             }
 
-            const correctPw = await user.isCorrectPassword(password)
-            console.log("correct password", correctPw)
+            const correctPw = await newUser.isCorrectPassword(password)
 
             if (!correctPw) {
                 console.log('no password')
@@ -122,10 +135,15 @@ const resolvers = {
                 throw AuthenticationError
             }
 
-            const userToken = signUserToken(user)
-            console.log(userToken)
+            const newPayload = {
+                ...payloadData,
+                firstName: newUser.name,
+                userId: newUser._id,
+            }
 
-            return { user, userToken }
+            const token = signToken(newPayload)
+
+            return { user: newUser, token }
         },
         addTask: async (parent, { taskName, assignedUser }) => {
             const newTask = await Task.create({
