@@ -18,6 +18,16 @@ type Account {
   masterList: [Task]
 }
 
+type Auth {
+  token: ID!
+  account: Account
+}
+
+type UserAuth {
+  token: ID!
+  user: User
+}
+
 type Task {
   _id: ID!
   taskName: String!
@@ -36,10 +46,10 @@ type Query {
   }
   
 type Mutation {
-    createAccount(familyName: String!, email: String!, password: String!): Account
-    accountLogin(email: String!, password: String!): Account
-    createUser(name: String!, password: String!, accountId: ID!): User
-    userLogin(name: String!, password: String!): User
+    createAccount(familyName: String!, email: String!, password: String!): Auth
+    accountLogin(email: String!, password: String!): Auth
+    createUser(name: String!, password: String!, accountId: ID!): UserAuth
+    userLogin(name: String!, password: String!): UserAuth
     addTask(taskName: String!, assignedUser: ID!): Task
   }`
 

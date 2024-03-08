@@ -17,7 +17,7 @@ function Signup(props) {
                 familyName: formState.familyName,
             },
         })
-        const token = mutationResponse.data.addAccount.token
+        const token = mutationResponse.data.createAccount.token
         Auth.login(token)
     }
 
