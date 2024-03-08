@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
+import Navigation from './components/Nav'
 import { Outlet } from 'react-router-dom'
 import AppFooter from './components/Footer'
 import {
@@ -39,6 +40,7 @@ function App() {
         <>
             <ApolloProvider client={client}>
                 <Header />
+                <Navigation />
 
                 <Outlet />
 

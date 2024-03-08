@@ -4,8 +4,6 @@ import { Card, Row, Col } from "react-bootstrap";
 function Homepage() {
     return (
         <>
-            <Link to="signup">Sign Up</Link>
-            <Link to="login">Login</Link>
             <br/>
             <Card>
                 <h1>
