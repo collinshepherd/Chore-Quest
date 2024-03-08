@@ -31,8 +31,6 @@ type Query {
     UserTasks(_id: ID!): [Task]
     Accounts: [Account]
     Account: Account
-    AllUsersInAccount(_id: ID!): [User]
-    AllTasksInAccount(_id: ID!): [Task]
     Tasks: [Task]
     Task(_id: ID!): Task
   }
