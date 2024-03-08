@@ -24,10 +24,7 @@ import Auth from '../utils/auth';
           }
           const { token, user } = await response.json();
           console.log(user);
-
-          // Implement user auth
           Auth.login(token);
-
         } catch (err) {
           console.error(err);
           setShowAlert(true);
