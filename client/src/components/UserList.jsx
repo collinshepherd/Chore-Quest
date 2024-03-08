@@ -10,9 +10,12 @@ const UserList = ({ users }) => {
         <div>
             {users &&
                 users.map((user) => (
-                    <LinkContainer to={`/users/${user._id}`} key={user._id}>
+                    <LinkContainer
+                        to={`/userLogin/${user.name}`}
+                        key={user._id}
+                    >
                         <Card>
-                            <CardHeader>{user.name}</CardHeader>
+                            <Card.Header>{user.name}</Card.Header>
                         </Card>
                     </LinkContainer>
                 ))}

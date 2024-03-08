@@ -9,6 +9,7 @@ import Homepage from './pages/Homepage.jsx';
 import Signup from './pages/Signup.jsx';
 import LoginForm from './pages/Login.jsx';
 import User from './pages/User.jsx';
+import UserLogin from './pages/UserLogin.jsx';
 import AddUser from './pages/AddUser.jsx';
 import AddTaskForm from './pages/AddTaskForm.jsx';
 import Error from './pages/Error';
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/addUser',
                 element: <AddUser />,
+            },
+            {
+                path: '/userLogin/:name',
+                element: <UserLogin />,
             },
             {
                 path: '/addTask',

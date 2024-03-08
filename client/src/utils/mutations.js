@@ -44,6 +44,18 @@ export const ADD_USER = gql`
     }
 `;
 
+export const LOGIN_USER = gql`
+    mutation userLogin($name: String!, $password: String!) {
+        userLogin(name: $name, password: $password) {
+            token
+            user {
+                _id
+                name
+            }
+        }
+    }
+`;
+
 export const ADD_TASK = gql`
     mutation Mutation($taskName: String!, $assignedUser: ID!) {
         addTask(taskName: $taskName, assignedUser: $assignedUser) {
