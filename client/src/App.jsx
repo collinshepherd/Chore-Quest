@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Navigation from './components/Nav';
+import UserNavigation from './components/UserNav';
 import { Outlet } from 'react-router-dom';
 import AppFooter from './components/Footer';
 import {
@@ -12,6 +13,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Auth from './utils/auth';
 
 // Creating an Apollo Client instance with default config
 const httpLink = createHttpLink({
@@ -34,13 +36,23 @@ const client = new ApolloClient({
 });
 
 function App() {
+    const loggedIn = Auth.loggedIn(true);
+    
+    const returnNavBar = () => {
+        if(loggedIn) {
+            return <UserNavigation />
+        }
+        return <Navigation />
+    }
+
+
     const [count, setCount] = useState(0);
 
     return (
         <>
             <ApolloProvider client={client}>
                 <Header />
-                <Navigation />
+                { returnNavBar() }
 
                 <Outlet />
 
