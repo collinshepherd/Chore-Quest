@@ -104,12 +104,13 @@ const resolvers = {
 
             return { account, token };
         },
-        createUser: async (parent, { name, password }, context) => {
+        createUser: async (parent, { name, password, role }, context) => {
             const familyId = context.user.familyId;
 
             const user = await User.create({
                 name,
                 password,
+                role,
                 accountId: familyId,
             });
 
@@ -149,6 +150,7 @@ const resolvers = {
                 ...payloadData,
                 firstName: newUser.name,
                 userId: newUser._id,
+                role: newUser.role,
             };
 
             const token = signToken(newPayload);
