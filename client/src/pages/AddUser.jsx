@@ -4,8 +4,6 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
-import UserNavigation from '../components/UserNav';
-
 import { Form, Button, Alert } from 'react-bootstrap';
 import '../style/pages.css';
 
@@ -51,7 +49,6 @@ function AddUser(props) {
 
     return (
         <div className="">
-            <UserNavigation />
             <h2>Add a Family Member</h2>
             <Form onSubmit={handleFormSubmit} className="form-width">
                 <Form.Group className="mb-3">
