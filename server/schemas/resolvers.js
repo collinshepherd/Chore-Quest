@@ -99,8 +99,13 @@ const resolvers = {
                 throw AuthenticationError;
             }
 
-            account.familyId = account._id;
-            const token = signToken(account);
+            const alteredAccount = {
+                familyName: account.familyName,
+                email: account.email,
+                familyId: account._id,
+            };
+
+            const token = signToken(alteredAccount);
 
             return { account, token };
         },
