@@ -34,12 +34,9 @@ export const ADD_ACCOUNT = gql`
 `;
 
 export const ADD_USER = gql`
-    mutation addUser($name: String!, $password: String!, $age: Int) {
-        addUser(name: $name, password: $password, familyName: $familyName) {
-            token
-            User {
-                _id
-            }
+    mutation Mutation($name: String!, $password: String!) {
+        createUser(name: $name, password: $password) {
+            _id
         }
     }
 `;

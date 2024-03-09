@@ -82,7 +82,7 @@ function AddTaskForm() {
                     </Form.Group>
 
                     <Form.Select
-                        aria-label="Default select example"
+                        aria-label="Assigned User Dropdown"
                         name="assignedUser"
                         onChange={handleChange}
                     >
