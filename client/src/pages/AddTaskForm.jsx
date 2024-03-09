@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ADD_TASK } from '../utils/mutations';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Card, Button, Form } from 'react-bootstrap';
 import {
     QUERY_USERS_IN_ACCOUNT,
     QUERY_USERS_ID_FROM_NAME,
@@ -11,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import '../style/pages.css';
 
 function AddTaskForm() {
     // Keeping track of the form state
@@ -77,11 +77,11 @@ function AddTaskForm() {
         return <p>Loading....</p>;
     } else {
         return (
-            <>
+            <Card className='background-light'>
                 <h2>Add a Quest</h2>
                 <Form onSubmit={handleFormSubmit} className="form-width">
                     <Form.Group className="mb-3" controlId="formBasicTask">
-                        <Form.Label>New Task Name</Form.Label>
+                        <Form.Label className='label'>New Task Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter new task"
@@ -109,19 +109,19 @@ function AddTaskForm() {
                         onChange={handleChange}
                         required
                     >
-                        <option value hidden>
-                            Select a user
+                        <option value hidden className='label'>
+                            Assign Quest to...
                         </option>
                         {usersInAccount.map((user) => (
                             <option key={user}>{user}</option>
                         ))}
                     </Form.Select>
 
-                    <Button variant="dark" type="submit" className="my-2">
+                    <Button variant="dark" type="submit" className="my-2 label">
                         Add Task
                     </Button>
                 </Form>
-            </>
+            </Card>
         );
     }
 }

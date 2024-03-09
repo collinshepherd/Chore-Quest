@@ -39,6 +39,7 @@ function UserNavigation() {
     }
 
     return (
+        <>
         <Navbar expand="lg" style={{ backgroundColor: '#1B2021' }}>
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -70,6 +71,8 @@ function UserNavigation() {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+        <br/>
+        </>
     );
 }
 
