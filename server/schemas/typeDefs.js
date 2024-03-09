@@ -38,7 +38,7 @@ type Task {
 type Query {
     Users: [User]
     User(name: String!): User
-    UserTasks(_id: ID!): [Task]
+    UserTasks: [Task]
     Accounts: [Account]
     Account: Account
     Tasks: [Task]
@@ -48,9 +48,9 @@ type Query {
 type Mutation {
     createAccount(familyName: String!, email: String!, password: String!): Auth
     accountLogin(email: String!, password: String!): Auth
-    createUser(name: String!, password: String!, accountId: ID!): UserAuth
+    createUser(name: String!, password: String!): User
     userLogin(name: String!, password: String!): UserAuth
     addTask(taskName: String!, assignedUser: ID!): Task
-  }`
+  }`;
 
-module.exports = typeDefs
+module.exports = typeDefs;

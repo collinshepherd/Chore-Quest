@@ -40,3 +40,8 @@
 .read-the-docs {
     color: #888;
 }
+
+#placeholderText::placeholder {
+    color: #fff;
+    opacity: 1;
+}

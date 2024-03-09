@@ -1,7 +1,7 @@
-const { Schema, model, Types } = require('mongoose')
-const bcrypt = require('bcrypt')
-const User = require('./User')
-const Task = require('./Task')
+const { Schema, model, Types } = require('mongoose');
+const bcrypt = require('bcrypt');
+const User = require('./User');
+const Task = require('./Task');
 
 // Bring up masterList to front end people
 
@@ -22,25 +22,25 @@ const accountSchema = new Schema({
     },
     users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     masterList: [{ type: Schema.Types.ObjectId, ref: 'Task' }],
-})
+});
 
 // tasks: [Task.schema],
 
 // hash user password
 accountSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-        const saltRounds = 10
-        this.password = await bcrypt.hash(this.password, saltRounds)
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
 
-    next()
-})
+    next();
+});
 
 // custom method to compare and validate password for logging in
 accountSchema.methods.isCorrectPassword = async function (password) {
-    return bcrypt.compare(password, this.password)
-}
+    return bcrypt.compare(password, this.password);
+};
 
-const Account = model('Account', accountSchema)
+const Account = model('Account', accountSchema);
 
-module.exports = Account
+module.exports = Account;

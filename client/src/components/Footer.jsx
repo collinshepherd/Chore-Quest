@@ -1,6 +1,6 @@
-import React from 'react'
-import { Footer } from 'react-bulma-components'
-import '../style/Footer.css'
+import React from 'react';
+import { Footer } from 'react-bulma-components';
+import '../style/Footer.css';
 
 const AppFooter = () => {
     return (
@@ -10,7 +10,7 @@ const AppFooter = () => {
                 Andria Goodwin, Chris Brewer, Collin Shepherd, & Nate McMahon
             </h4>
         </Footer>
-    )
-}
+    );
+};
 
-export default AppFooter
+export default AppFooter;
