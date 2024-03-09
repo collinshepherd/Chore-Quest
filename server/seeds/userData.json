@@ -4,19 +4,19 @@
     "password": "danny123!",
     "age": 10,
     "balance": 0.0,
-    "roles": ["Kid"]
+    "role": "Kid"
   },
   {
     "name": "Bobby",
     "password": "bobby123!",
     "age": 10,
     "balance": 10.50,
-    "roles": ["Kid"]
+    "role": "Kid"
   },  {
     "name": "Nicholas",
     "password": "nicholas123!",
     "age": 10,
     "balance": 10.50,
-    "roles": ["Parent"]
+    "role": "Parent"
   }
 ]

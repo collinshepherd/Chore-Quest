@@ -5,7 +5,7 @@ type User {
     password: String
     age: Int
     balance: Float
-    roles: [String]
+    role: String
     accountId: ID
   }
 
@@ -48,7 +48,7 @@ type Query {
 type Mutation {
     createAccount(familyName: String!, email: String!, password: String!): Auth
     accountLogin(email: String!, password: String!): Auth
-    createUser(name: String!, password: String!): User
+    createUser(name: String!, password: String!, role: String!): User
     userLogin(name: String!, password: String!): UserAuth
     addTask(taskName: String!, assignedUser: ID!): Task
   }`;
