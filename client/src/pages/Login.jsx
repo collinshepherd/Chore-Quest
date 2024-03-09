@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ACCOUNT_LOGIN } from '../utils/mutations';
+import '../style/pages.css';
+
 const LoginForm = () => {
     const [userFormData, setUserFormData] = useState({
         email: '',
@@ -58,7 +60,7 @@ const LoginForm = () => {
         });
     };
     return (
-        <>
+        <Card className='background-light'>
             <h2>Login</h2>
             <Form
                 noValidate
@@ -75,7 +77,7 @@ const LoginForm = () => {
                     Something went wrong with your login credentials!
                 </Alert>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email">Email</Form.Label>
+                    <Form.Label htmlFor="email" className='label'>Email</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Your email"
@@ -89,7 +91,7 @@ const LoginForm = () => {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Label htmlFor="password" className='label'>Password</Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Your password"
@@ -106,11 +108,12 @@ const LoginForm = () => {
                     disabled={!(userFormData.email && userFormData.password)}
                     type="submit"
                     variant="dark"
+                    className='label'
                 >
                     Login
                 </Button>
             </Form>
-        </>
+        </Card>
     );
 };
 export default LoginForm;

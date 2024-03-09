@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import '../style/pages.css';
 
 function AddUser(props) {
@@ -48,11 +48,11 @@ function AddUser(props) {
     };
 
     return (
-        <div className="">
+        <Card className='background-light'>
             <h2>Add a Family Member</h2>
             <Form onSubmit={handleFormSubmit} className="form-width">
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name">Name</Form.Label>
+                    <Form.Label htmlFor="name" className='label'>Name</Form.Label>
                     <Form.Control
                         placeholder="name"
                         name="name"
@@ -64,7 +64,7 @@ function AddUser(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="role">Role</Form.Label>
+                    <Form.Label htmlFor="role" className='label'>Role</Form.Label>
                     <Form.Select
                         aria-label="Role Select Dropdown"
                         onChange={handleChange}
@@ -80,7 +80,7 @@ function AddUser(props) {
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="age">Age (optional)</Form.Label>
+                    <Form.Label htmlFor="age" className='label'>Age (optional)</Form.Label>
                     <Form.Control
                         placeholder="age"
                         name="age"
@@ -91,7 +91,7 @@ function AddUser(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="pwd">Personal Passcode</Form.Label>
+                    <Form.Label htmlFor="pwd" className='label'>Personal Passcode</Form.Label>
                     <Form.Control
                         placeholder="****"
                         name="password"
@@ -103,11 +103,11 @@ function AddUser(props) {
                         required
                     />
                 </Form.Group>
-                <Button type="submit" variant="dark">
+                <Button type="submit" variant="dark" className='label'>
                     Create Profile
                 </Button>
             </Form>
-        </div>
+        </Card>
     );
 }
 

@@ -14,7 +14,6 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Auth from './utils/auth';
 
 // Creating an Apollo Client instance with default config
 const httpLink = createHttpLink({

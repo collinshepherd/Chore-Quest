@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import '../style/pages.css';
 
 const UserLogin = () => {
     const params = useParams();
@@ -59,7 +60,7 @@ const UserLogin = () => {
         });
     };
     return (
-        <>
+        <Card className='background-light'>
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                 <Alert
                     dismissible
@@ -92,7 +93,7 @@ const UserLogin = () => {
                     Submit
                 </Button>
             </Form>
-        </>
+        </Card>
     );
 };
 export default UserLogin;
