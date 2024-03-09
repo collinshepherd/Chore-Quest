@@ -7,6 +7,10 @@ import {
     QUERY_USERS_IN_ACCOUNT,
     QUERY_USERS_ID_FROM_NAME,
 } from '../utils/queries';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 function AddTaskForm() {
     // Keeping track of the form state
@@ -16,7 +20,7 @@ function AddTaskForm() {
     });
     // Mutation to add a task to the database
     const [addTask, { error }] = useMutation(ADD_TASK);
-    const { loading, arg, data } = useQuery(QUERY_USERS_IN_ACCOUNT);
+    const { loading, error: arg, data } = useQuery(QUERY_USERS_IN_ACCOUNT);
 
     const [
         getUserId,
@@ -32,6 +36,7 @@ function AddTaskForm() {
     if (loading) {
         console.log('loading');
     } else {
+        console.log(arg);
         usersInAccount = data.Account.users.map((user) => {
             return user.name;
         });
@@ -39,7 +44,9 @@ function AddTaskForm() {
     // handler for when the user submits the form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
+        if (formState.assignedUser === '') {
+            alert('Please assign a user to the task');
+        }
 
         const userId = await getUserId();
         console.log(userId);
@@ -61,6 +68,13 @@ function AddTaskForm() {
             [name]: value,
         });
     };
+
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Assign who you want to do the task!
+        </Tooltip>
+    );
+
     if (loading) {
         return <p>Loading....</p>;
     } else {
@@ -75,23 +89,37 @@ function AddTaskForm() {
                             placeholder="Enter new task"
                             name="taskName"
                             onChange={handleChange}
+                            required
                         />
                         <Form.Text className="text-muted">
                             Make the task so cool!
                         </Form.Text>
                     </Form.Group>
-
+                    <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip}
+                    >
+                        <FontAwesomeIcon
+                            className="mx-2 fs-5 mb-2"
+                            icon={faCircleInfo}
+                        />
+                    </OverlayTrigger>
                     <Form.Select
                         aria-label="Assigned User Dropdown"
                         name="assignedUser"
                         onChange={handleChange}
+                        required
                     >
-                        <option>Open this select menu</option>
+                        <option value hidden>
+                            Select a user
+                        </option>
                         {usersInAccount.map((user) => (
                             <option key={user}>{user}</option>
                         ))}
                     </Form.Select>
-                    <Button variant="dark" type="submit">
+
+                    <Button variant="dark" type="submit" className="my-2">
                         Add Task
                     </Button>
                 </Form>
