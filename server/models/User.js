@@ -29,8 +29,9 @@ const userSchema = new Schema({
         set: setPrice,
         get: getPrice,
     },
-    roles: {
-        type: Array,
+    role: {
+        type: String,
+        required: true,
     },
     accountId: {
         type: Schema.Types.ObjectId,

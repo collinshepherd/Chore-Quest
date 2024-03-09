@@ -6,6 +6,7 @@ import Navigation from './components/Nav';
 import UserNavigation from './components/UserNav';
 import { Outlet } from 'react-router-dom';
 import AppFooter from './components/Footer';
+import Auth from './utils/auth';
 import {
     ApolloClient,
     InMemoryCache,
