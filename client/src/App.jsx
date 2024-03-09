@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Navigation from './components/Nav';
 import { Outlet } from 'react-router-dom';
 import AppFooter from './components/Footer';
+import Auth from './utils/auth';
 import {
     ApolloClient,
     InMemoryCache,
@@ -40,6 +41,7 @@ function App() {
         <>
             <ApolloProvider client={client}>
                 <Header />
+
                 <Navigation />
 
                 <Outlet />

@@ -5,7 +5,7 @@ import { QUERY_USERS_IN_ACCOUNT } from '../utils/queries';
 
 const User = () => {
     const { data } = useQuery(QUERY_USERS_IN_ACCOUNT);
-
+    console.log(data);
     const users = data?.Account.users || [];
 
     return (

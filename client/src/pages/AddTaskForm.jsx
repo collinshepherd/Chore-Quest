@@ -36,7 +36,6 @@ function AddTaskForm() {
     if (loading) {
         console.log('loading');
     } else {
-        console.log(arg);
         usersInAccount = data.Account.users.map((user) => {
             return user.name;
         });
@@ -49,7 +48,6 @@ function AddTaskForm() {
         }
 
         const userId = await getUserId();
-        console.log(userId);
 
         const mutationResponse = await addTask({
             variables: {
