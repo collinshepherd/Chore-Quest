@@ -9,7 +9,6 @@ import UserNavigation from '../components/UserNav';
 import { Form, Button, Alert } from 'react-bootstrap';
 import '../style/pages.css';
 
-
 function AddUser(props) {
     const [formState, setFormState] = useState({
         name: '',
@@ -21,7 +20,35 @@ function AddUser(props) {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        if (formState.role === '') {
+            alert('Please select a role');
+            return;
+        }
+        const mutationResponse = await addUser({
+            variables: {
+                name: formState.name,
+                password: formState.password,
+                // age: formState.age,
+                role: formState.role,
+            },
+        });
+        setFormState({
+            name: '',
+            password: '',
+            age: '',
+            role: '',
+        });
+    };
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    return (
         <div className="">
             <UserNavigation />
             <h2>Add a Family Member</h2>
