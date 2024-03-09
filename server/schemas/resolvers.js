@@ -1,8 +1,4 @@
-const {
-    signToken,
-    signUserToken,
-    AuthenticationError,
-} = require('../utils/auth');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 const { mongoose } = require('mongoose');
 const ObjectId = mongoose.mongo.ObjectId;
@@ -18,7 +14,7 @@ const resolvers = {
         User: async (parent, { name }, context) => {
             // This context.user does not actually refer to a user it is
             // referring to an individual account
-            const familyId = context.user._id;
+            const familyId = context.user.familyId;
 
             // Get and return a single user from the user collection
             const user = await User.findOne({
@@ -51,6 +47,7 @@ const resolvers = {
             // referring to an individual account
             const familyId = context.user.familyId;
 
+            console.log(context.user);
             // Get and return a single account from the account collection
             return await Account.findOne({ _id: familyId })
                 .populate('users')
@@ -128,15 +125,11 @@ const resolvers = {
             return user;
         },
         userLogin: async (parent, { name, password }, context) => {
-            console.log('name', name);
-            console.log('password', password);
-
             const payloadData = context.user;
-            console.log(payloadData);
 
             const newUser = await User.findOne({
                 name: name,
-                accountId: payloadData._id,
+                accountId: payloadData.familyId,
             });
 
             if (!newUser) {

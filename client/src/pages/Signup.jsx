@@ -27,7 +27,7 @@ function Signup(props) {
         });
         const token = mutationResponse.data.createAccount.token;
         Auth.login(token);
-        navigate('/users');
+        navigate('/addUser');
     };
 
     const handleChange = (event) => {

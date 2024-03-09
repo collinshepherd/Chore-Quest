@@ -49,7 +49,7 @@ const UserLogin = () => {
             console.log(token);
 
             Auth.login(token);
-            navigate('/users');
+            navigate('/profile');
         } catch (err) {
             console.error(err);
             setShowAlert(true);
