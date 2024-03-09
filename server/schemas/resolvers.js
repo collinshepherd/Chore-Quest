@@ -49,7 +49,7 @@ const resolvers = {
         Account: async (parent, args, context) => {
             // This context.user does not actually refer to a user it is
             // referring to an individual account
-            const familyId = context.user._id;
+            const familyId = context.user.familyId;
 
             // Get and return a single account from the account collection
             return await Account.findOne({ _id: familyId })
