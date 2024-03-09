@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
+import UserNavigation from '../components/UserNav';
 
 function AddUser(props) {
   const [formState, setFormState] = useState({ name: '', password: '', age: '', role: '' });
@@ -32,6 +33,7 @@ function AddUser(props) {
 
   return (
     <div className="">
+      <UserNavigation />
       <h2>Add a Family Member</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="">

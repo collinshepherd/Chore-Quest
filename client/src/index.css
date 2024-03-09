@@ -5,7 +5,7 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #5abcb9;
+    background-color: #CFFCFF;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -28,7 +28,7 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
-    background-color: #5abcb9;
+    background-color: #CFFCFF;
 }
 
 h1 {
@@ -67,3 +67,5 @@ button:focus-visible {
         background-color: #f9f9f9;
     }
 }
+
+
