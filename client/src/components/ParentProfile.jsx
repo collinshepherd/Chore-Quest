@@ -69,10 +69,10 @@ const ParentProfile = () => {
         const mutationResponse = await RemoveTask({
             variables: {
                 id: id,
-            }
-        })
+            },
+        });
         window.location.reload();
-    }
+    };
 
     const [completeTask] = useMutation(COMPLETE_TASK);
 
@@ -80,10 +80,10 @@ const ParentProfile = () => {
         const mutationResponse = await completeTask({
             variables: {
                 id: id,
-            }
-        })
+            },
+        });
         window.location.reload();
-    }
+    };
 
     return (
         <>
@@ -130,7 +130,7 @@ const ParentProfile = () => {
                                     className="d-flex justify-content-evenly justify-content-center"
                                 >
                                     <FontAwesomeIcon
-                                        onClick={() => FinishTask (task._id)}  
+                                        onClick={() => FinishTask(task._id)}
                                         className="fs-2 align-self-center"
                                         icon={faCheckCircle}
                                     />

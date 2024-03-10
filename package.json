@@ -18,6 +18,10 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "react-bulma-components": "^4.1.0"
+    "jss": "^10.10.0",
+    "jss-preset-default": "^10.10.0",
+    "react-animations": "^1.0.0",
+    "react-bulma-components": "^4.1.0",
+    "styled-components": "^6.1.8"
   }
 }

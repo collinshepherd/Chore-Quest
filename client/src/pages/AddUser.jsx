@@ -34,7 +34,7 @@ function AddUser(props) {
             alert('Please select a role');
             return;
         }
-        console.log(formState);
+
         const mutationResponse = await addUser({
             variables: {
                 name: formState.name,

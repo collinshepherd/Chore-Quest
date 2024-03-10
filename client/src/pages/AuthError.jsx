@@ -3,8 +3,6 @@ import { Button, Card } from 'react-bootstrap';
 import '../style/pages.css';
 
 export default function AuthError(props) {
-    console.log(props);
-
     return (
         <Card id="error-page" className="background-light">
             <h1>Oops! You aren't supposed to be here.</h1>

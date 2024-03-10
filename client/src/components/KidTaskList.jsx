@@ -41,10 +41,10 @@ const KidTaskList = () => {
         const mutationResponse = await completeTask({
             variables: {
                 id: id,
-            }
-        })
+            },
+        });
         window.location.reload();
-    }
+    };
 
     return (
         <>
