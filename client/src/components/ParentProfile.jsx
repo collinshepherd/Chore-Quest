@@ -1,10 +1,12 @@
 import { QUERY_USERS_IN_ACCOUNT, QUERY_ACCOUNT_TASKS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Row } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Tab from 'react-bootstrap/Tab';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ParentProfile = () => {
     // Declaring variables to store tasks and users
@@ -70,7 +72,10 @@ const ParentProfile = () => {
                     {/* Currently user/userId does not exist as a path yet */}
                     {usersInAccount.map((user) => (
                         <Link key={user.id} to={`/user/${user.id}`}>
-                            <Button key={user.id} className="my-2 w-100">
+                            <Button
+                                key={user.id}
+                                className="my-2 w-100 btn-dark "
+                            >
                                 {user.name}
                             </Button>
                         </Link>
@@ -100,15 +105,24 @@ const ParentProfile = () => {
                     <Tab.Pane eventKey="#activeTasks">
                         <ListGroup>
                             {activeTasks.map((task) => (
-                                <ListGroup.Item key={task._id}>
-                                    Task: {''}
-                                    {task.taskName}
-                                    <button
+                                <ListGroup.Item
+                                    key={task._id}
+                                    className="d-flex justify-content-evenly justify-content-center"
+                                >
+                                    <FontAwesomeIcon
                                         onClick={() => deleteTask(task._id)}
-                                    >
-                                        Delete
-                                    </button>{' '}
-                                    <br /> Assigned User: {task.name}
+                                        className="fs-2 align-self-center"
+                                        icon={faCheckCircle}
+                                    />
+                                    <div className="">
+                                        Task: {task.taskName} <br />
+                                        Assigned User: {task.name}
+                                    </div>
+                                    <FontAwesomeIcon
+                                        onClick={() => deleteTask(task._id)}
+                                        className="fs-2 align-self-center"
+                                        icon={faTrash}
+                                    />
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>

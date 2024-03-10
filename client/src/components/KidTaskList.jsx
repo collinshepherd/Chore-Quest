@@ -1,6 +1,8 @@
 import Auth from '../utils/auth';
 import { QUERY_USERS_TASK } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Tab from 'react-bootstrap/Tab';
@@ -55,13 +57,24 @@ const KidTaskList = () => {
                             <h2 className="my-2">Current Tasks: </h2>
 
                             {activeTasks.map((task) => (
-                                <ListGroup.Item key={task._id}>
-                                    {task.taskName}
-                                    <button
+                                <ListGroup.Item
+                                    key={task._id}
+                                    className="d-flex justify-content-evenly"
+                                >
+                                    <FontAwesomeIcon
                                         onClick={() => deleteTask(task._id)}
-                                    >
-                                        Delete
-                                    </button>
+                                        className="fs-2 "
+                                        icon={faCheckCircle}
+                                    />
+                                    <div className="">
+                                        Task: {task.taskName} Assigned User:{' '}
+                                        {firstName}
+                                    </div>
+                                    <FontAwesomeIcon
+                                        onClick={() => deleteTask(task._id)}
+                                        className="fs-2 "
+                                        icon={faTrash}
+                                    />
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
