@@ -35,7 +35,7 @@ const UserLogin = () => {
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     // Adding the mutation for loginAccount
-    const [loginAccount, { error }] = useMutation(LOGIN_USER);
+    const [loginUser, { error }] = useMutation(LOGIN_USER);
 
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const UserLogin = () => {
 
         try {
             // Await the creation of the login response
-            const response = await loginAccount({
+            const response = await loginUser({
                 variables: {
                     name: params.name,
                     password: userFormData.password,

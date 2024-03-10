@@ -39,7 +39,7 @@ function AddUser(props) {
             variables: {
                 name: formState.name,
                 password: formState.password,
-                role: formState.role,
+                role: formState.role.toLowerCase(),
                 // age: formState.age,
             },
         });
