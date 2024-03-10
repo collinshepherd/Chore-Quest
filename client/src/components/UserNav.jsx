@@ -63,8 +63,10 @@ function UserNavigation() {
                             as={Link}
                             to="/"
                             style={{ color: 'white' }} onClick={() => { 
+                                const isLoggedIn = Auth.loggedIn();
                                 console.log("Logging Out");
                                 localStorage.clear();
+                                isLoggedIn = false;
                                  
                             }}
                         >

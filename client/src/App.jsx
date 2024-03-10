@@ -37,7 +37,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-    const loggedIn = Auth.loggedIn(true);
+    const loggedIn = Auth.loggedIn();
     
     const returnNavBar = () => {
         if(loggedIn) {
