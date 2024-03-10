@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const QUERY_USERS_IN_ACCOUNT = gql`
     query Query {
         Account {
+            _id
             users {
                 _id
                 name
@@ -25,6 +26,20 @@ export const QUERY_USERS_TASK = gql`
             assignedUser
             complete
             taskName
+        }
+    }
+`;
+
+export const QUERY_ACCOUNT_TASKS = gql`
+    query Account {
+        Account {
+            _id
+            masterList {
+                complete
+                taskName
+                assignedUser
+                _id
+            }
         }
     }
 `;

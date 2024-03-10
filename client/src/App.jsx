@@ -15,7 +15,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
 // Creating an Apollo Client instance with default config
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -38,14 +37,13 @@ const client = new ApolloClient({
 
 function App() {
     const loggedIn = Auth.loggedIn();
-    
-    const returnNavBar = () => {
-        if(loggedIn) {
-            return <UserNavigation />
-        }
-        return <Navigation />
-    }
 
+    const returnNavBar = () => {
+        if (loggedIn) {
+            return <UserNavigation />;
+        }
+        return <Navigation />;
+    };
 
     const [count, setCount] = useState(0);
 
@@ -53,7 +51,7 @@ function App() {
         <>
             <ApolloProvider client={client}>
                 <Header />
-                { returnNavBar() }
+                {returnNavBar()}
 
                 <Outlet />
 
