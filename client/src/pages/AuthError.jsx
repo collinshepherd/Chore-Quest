@@ -1,13 +1,9 @@
-import { Link, useNavigate, useRouteError } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
 import '../style/pages.css';
 
 export default function AuthError(props) {
     console.log(props);
-
-    const returnHome = () => {
-        useNavigate('/');
-    };
 
     return (
         <Card id="error-page" className="background-light">

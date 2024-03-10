@@ -28,8 +28,8 @@ function Signup(props) {
         });
         const token = mutationResponse.data.createAccount.token;
         Auth.login(token);
-        window.location.reload();
         navigate('/addUser');
+        window.location.reload();
     };
 
     const handleChange = (event) => {
@@ -40,9 +40,20 @@ function Signup(props) {
         });
     };
 
-    const renderTooltip = (props) => (
+    const renderFamilyNameToolTip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             This is just a username for your account
+        </Tooltip>
+    );
+    const renderParentNameToolTip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            This is the username for your parental account to add tasks and
+            create new users
+        </Tooltip>
+    );
+    const renderParentPasswordToolTip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            This is the password for the parent account with admin privileges
         </Tooltip>
     );
 
@@ -55,9 +66,9 @@ function Signup(props) {
                         Family Name
                     </Form.Label>
                     <OverlayTrigger
-                        placement="right"
+                        placement="bottom"
                         delay={{ show: 250, hide: 400 }}
-                        overlay={renderTooltip}
+                        overlay={renderFamilyNameToolTip}
                     >
                         <FontAwesomeIcon
                             className="mx-2 fs-5"
@@ -95,6 +106,52 @@ function Signup(props) {
                         name="password"
                         type="password"
                         id="pwd"
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="pwd" className="label">
+                        Parent Account Username
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderParentNameToolTip}
+                        >
+                            <FontAwesomeIcon
+                                className="mx-2 fs-5"
+                                icon={faCircleInfo}
+                            />
+                        </OverlayTrigger>
+                    </Form.Label>
+                    <Form.Control
+                        placeholder="Parent"
+                        name="parentName"
+                        type="parentName"
+                        id="parentName"
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="pwd" className="label">
+                        Parent Account Password
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderParentPasswordToolTip}
+                        >
+                            <FontAwesomeIcon
+                                className="mx-2 fs-5"
+                                icon={faCircleInfo}
+                            />
+                        </OverlayTrigger>
+                    </Form.Label>
+                    <Form.Control
+                        placeholder="Parent Account Password"
+                        name="parentPassword"
+                        type="parentPassword"
+                        id="parentPassword"
                         onChange={handleChange}
                         required
                     />

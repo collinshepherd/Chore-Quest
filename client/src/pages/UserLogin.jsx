@@ -18,7 +18,16 @@ const UserLogin = () => {
             />
         );
     }
+
     const params = useParams();
+
+    const { data } = Auth.getProfile();
+
+    // Checks the Auth Token to see if the user they are trying to login to is already validated in the token
+    // If it is then it will send them to their profile
+    if (params.name === data.firstName) {
+        window.location.href = '/profile';
+    }
 
     const [userFormData, setUserFormData] = useState({
         password: '',
