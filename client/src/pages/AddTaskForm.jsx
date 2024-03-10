@@ -66,7 +66,6 @@ function AddTaskForm() {
             },
         });
         window.location.reload();
-        console.log(mutationResponse);
     };
 
     // change handler so when the user inputs something into the form the formState is updated
