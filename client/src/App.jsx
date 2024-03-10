@@ -15,6 +15,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+
 // Creating an Apollo Client instance with default config
 const httpLink = createHttpLink({
     uri: '/graphql',
