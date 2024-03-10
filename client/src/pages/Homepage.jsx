@@ -25,7 +25,7 @@ function Homepage() {
                 </p>
             </Card>
             <br />
-            <Card className='background-light'>
+            <Card className="background-light">
                 <Row>
                     <Col md>
                         <h3>Already have a Chore Quest account?</h3>

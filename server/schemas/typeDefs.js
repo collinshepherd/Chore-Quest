@@ -37,7 +37,7 @@ type Task {
 
 type Query {
     Users: [User]
-    User(name: String!): User
+    User(name: String, _id: ID): User
     UserTasks: [Task]
     Accounts: [Account]
     Account: Account

@@ -11,17 +11,23 @@ const resolvers = {
             // Get and return all documents from the classes collection
             return await User.find({});
         },
-        User: async (parent, { name }, context) => {
+        User: async (parent, { name, _id }, context) => {
             // This context.user does not actually refer to a user it is
             // referring to an individual account
             const familyId = context.user.familyId;
+            let user;
 
             // Get and return a single user from the user collection
-            const user = await User.findOne({
-                name: name,
-                accountId: familyId,
-            });
-
+            if (name) {
+                user = await User.findOne({
+                    name: name,
+                    accountId: familyId,
+                });
+            } else {
+                user = await User.findOne({
+                    _id: _id,
+                });
+            }
             return user;
         },
         UserTasks: async (parent, args, context) => {
@@ -77,8 +83,6 @@ const resolvers = {
                 familyId: newAccount._id,
             };
             const token = signToken(account);
-
-            console.log('new account:', newAccount);
 
             return { account: newAccount, token };
         },
