@@ -40,44 +40,43 @@ function UserNavigation() {
 
     return (
         <>
-        <Navbar expand="lg" style={{ backgroundColor: '#1B2021' }}>
-            <Container>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link
-                            as={Link}
-                            to="/profile"
-                            style={{ color: 'white' }}
-                        >
-                            Profile
-                        </Nav.Link>
-                        <Nav.Link
-                            as={Link}
-                            to="/users"
-                            style={{ color: 'white' }}
-                        >
-                            Users
-                        </Nav.Link>
-                        {navBarRendering()}
-                        <Nav.Link
-                            as={Link}
-                            to="/"
-                            style={{ color: 'white' }} onClick={() => { 
-                                const isLoggedIn = Auth.loggedIn();
-                                console.log("Logging Out");
-                                localStorage.clear();
-                                isLoggedIn = false;
-                                 
-                            }}
-                        >
-                            Logout
-                        </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-        <br/>
+            <Navbar expand="lg" style={{ backgroundColor: '#1B2021' }}>
+                <Container>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link
+                                as={Link}
+                                to="/profile"
+                                style={{ color: 'white' }}
+                            >
+                                Profile
+                            </Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to="/users"
+                                style={{ color: 'white' }}
+                            >
+                                Users
+                            </Nav.Link>
+                            {navBarRendering()}
+                            <Nav.Link
+                                as={Link}
+                                to="/"
+                                style={{ color: 'white' }}
+                                onClick={() => {
+                                    console.log('Logging Out');
+                                    localStorage.clear();
+                                    window.location.reload();
+                                }}
+                            >
+                                Logout
+                            </Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <br />
         </>
     );
 }

@@ -55,6 +55,7 @@ function AddTaskForm() {
                 assignedUser: userId.data.User._id,
             },
         });
+        window.location.reload();
         console.log(mutationResponse);
     };
 
@@ -77,11 +78,11 @@ function AddTaskForm() {
         return <p>Loading....</p>;
     } else {
         return (
-            <Card className='background-light'>
+            <Card className="background-light">
                 <h2>Add a Quest</h2>
                 <Form onSubmit={handleFormSubmit} className="form-width">
                     <Form.Group className="mb-3" controlId="formBasicTask">
-                        <Form.Label className='label'>New Task Name</Form.Label>
+                        <Form.Label className="label">New Task Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter new task"
@@ -109,7 +110,7 @@ function AddTaskForm() {
                         onChange={handleChange}
                         required
                     >
-                        <option value hidden className='label'>
+                        <option value hidden className="label">
                             Assign Quest to...
                         </option>
                         {usersInAccount.map((user) => (

@@ -51,6 +51,7 @@ const UserLogin = () => {
 
             Auth.login(token);
             navigate('/profile');
+            window.location.reload();
         } catch (err) {
             console.error(err);
             setShowAlert(true);
@@ -60,7 +61,7 @@ const UserLogin = () => {
         });
     };
     return (
-        <Card className='background-light'>
+        <Card className="background-light">
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                 <Alert
                     dismissible

@@ -28,6 +28,7 @@ function Signup(props) {
         });
         const token = mutationResponse.data.createAccount.token;
         Auth.login(token);
+        window.location.reload();
         navigate('/addUser');
     };
 
@@ -46,12 +47,13 @@ function Signup(props) {
     );
 
     return (
-
-        <Card className='background-light'>
+        <Card className="background-light">
             <h2>Signup</h2>
             <Form onSubmit={handleFormSubmit} className="form-width">
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="familyName" className='label'>Family Name</Form.Label>
+                    <Form.Label htmlFor="familyName" className="label">
+                        Family Name
+                    </Form.Label>
                     <OverlayTrigger
                         placement="right"
                         delay={{ show: 250, hide: 400 }}
@@ -72,7 +74,9 @@ function Signup(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email" className='label'>Email</Form.Label>
+                    <Form.Label htmlFor="email" className="label">
+                        Email
+                    </Form.Label>
                     <Form.Control
                         placeholder="youremail@mail.com"
                         name="email"
@@ -83,7 +87,9 @@ function Signup(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="pwd" className='label'>Password</Form.Label>
+                    <Form.Label htmlFor="pwd" className="label">
+                        Password
+                    </Form.Label>
                     <Form.Control
                         placeholder="********"
                         name="password"
@@ -93,7 +99,7 @@ function Signup(props) {
                         required
                     />
                 </Form.Group>
-                <Button type="submit" variant="dark" className='label'>
+                <Button type="submit" variant="dark" className="label">
                     Create Account
                 </Button>
             </Form>
