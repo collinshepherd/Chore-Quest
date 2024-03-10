@@ -28,7 +28,7 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
-    background-image: url('\public\retro-8-bit.jpg');
+    background-image: url('\retro-8-bit.jpg');
     background-size: 100%;
     background-attachment: fixed;
     background-color: #cffcff;
