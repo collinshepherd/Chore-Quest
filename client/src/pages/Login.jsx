@@ -49,6 +49,7 @@ const LoginForm = () => {
 
             Auth.login(token);
             navigate('/users');
+            window.location.reload();
         } catch (err) {
             console.error(err);
             setShowAlert(true);
