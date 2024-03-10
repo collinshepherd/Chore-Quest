@@ -37,6 +37,7 @@ function AddUser(props) {
             age: '',
             role: '',
         });
+        window.location.reload();
     };
 
     const handleChange = (event) => {
@@ -48,11 +49,13 @@ function AddUser(props) {
     };
 
     return (
-        <Card className='background-light'>
+        <Card className="background-light">
             <h2>Add a Family Member</h2>
             <Form onSubmit={handleFormSubmit} className="form-width">
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name" className='label'>Name</Form.Label>
+                    <Form.Label htmlFor="name" className="label">
+                        Name
+                    </Form.Label>
                     <Form.Control
                         placeholder="name"
                         name="name"
@@ -64,7 +67,9 @@ function AddUser(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="role" className='label'>Role</Form.Label>
+                    <Form.Label htmlFor="role" className="label">
+                        Role
+                    </Form.Label>
                     <Form.Select
                         aria-label="Role Select Dropdown"
                         onChange={handleChange}
@@ -80,7 +85,9 @@ function AddUser(props) {
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="age" className='label'>Age (optional)</Form.Label>
+                    <Form.Label htmlFor="age" className="label">
+                        Age (optional)
+                    </Form.Label>
                     <Form.Control
                         placeholder="age"
                         name="age"
@@ -91,7 +98,9 @@ function AddUser(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="pwd" className='label'>Personal Passcode</Form.Label>
+                    <Form.Label htmlFor="pwd" className="label">
+                        Personal Passcode
+                    </Form.Label>
                     <Form.Control
                         placeholder="****"
                         name="password"
@@ -103,7 +112,7 @@ function AddUser(props) {
                         required
                     />
                 </Form.Group>
-                <Button type="submit" variant="dark" className='label'>
+                <Button type="submit" variant="dark" className="label">
                     Create Profile
                 </Button>
             </Form>
