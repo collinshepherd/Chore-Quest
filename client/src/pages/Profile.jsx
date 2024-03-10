@@ -26,6 +26,9 @@ const Profile = () => {
             }
         });
     }
+    const deleteTask = (id) => {
+        console.log("delete this ID", id)
+    }
 
     const { familyName, firstName, userId, _id: familyId } = authToken.data;
 
@@ -62,6 +65,7 @@ const Profile = () => {
                                     {activeTasks.map((task) => (
                                         <ListGroup.Item key={task._id}>
                                             {task.taskName}
+                                            <button onClick={() => deleteTask(task._id)} >Delete</button>
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
@@ -73,7 +77,9 @@ const Profile = () => {
                                         <ListGroup.Item key={task._id}>
                                             {task.taskName}
                                         </ListGroup.Item>
+                                        
                                     ))}
+
                                 </ListGroup>
                             </Tab.Pane>
                         </Tab.Content>
