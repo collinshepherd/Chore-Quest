@@ -43,7 +43,7 @@ const LoginForm = () => {
             // Await the creation of the login response
             const response = await loginAccount({
                 variables: {
-                    email: userFormData.email,
+                    email: userFormData.email.toLowerCase(),
                     password: userFormData.password,
                 },
             });

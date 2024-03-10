@@ -27,7 +27,7 @@ function Signup(props) {
 
         const mutationResponse = await addAccount({
             variables: {
-                email: formState.email,
+                email: formState.email.toLowerCase(),
                 password: formState.password,
                 familyName: formState.familyName,
             },
@@ -39,7 +39,7 @@ function Signup(props) {
             variables: {
                 name: formState.parentName,
                 password: formState.parentPassword,
-                role: 'Parent',
+                role: 'parent',
                 // age: formState.age,
             },
         });

@@ -37,9 +37,9 @@ function AddUser(props) {
         console.log(formState);
         const mutationResponse = await addUser({
             variables: {
-                name: formState.name,
+                name: formState.name.toLowerCase(),
                 password: formState.password,
-                role: formState.role,
+                role: formState.role.toLowerCase(),
                 // age: formState.age,
             },
         });
