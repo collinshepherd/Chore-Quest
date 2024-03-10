@@ -62,8 +62,12 @@ function UserNavigation() {
                         {navBarRendering()}
                         <Nav.Link
                             as={Link}
-                            to="/login"
-                            style={{ color: 'white' }}
+                            to="/"
+                            style={{ color: 'white' }} onClick={() => { 
+                                console.log("Logging Out");
+                                localStorage.clear();
+                                 
+                            }}
                         >
                             Logout
                         </Nav.Link>

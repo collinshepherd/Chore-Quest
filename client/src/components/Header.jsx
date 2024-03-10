@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Heading } from 'react-bulma-components';
 import '../style/Header.css';
-import ChoreQuestHeader from "/Users/alfredomercado/bootcamp/Chore-Quest/client/src/assets/images/ChoreQuest4.png";
+import ChoreQuestHeader from "../assets/images/ChoreQuest4.png";
 
 function Header() {
     return (
