@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth.js';
-import { ADD_ACCOUNT } from '../utils/mutations';
+import { ADD_ACCOUNT, ADD_USER } from '../utils/mutations';
 import { Form, Button, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -11,8 +11,14 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import '../style/pages.css';
 
 function Signup(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [formState, setFormState] = useState({
+        email: '',
+        password: '',
+        parentName: '',
+        parentPassword: '',
+    });
     const [addAccount] = useMutation(ADD_ACCOUNT);
+    const [addUser] = useMutation(ADD_USER);
 
     const navigate = useNavigate();
 
@@ -28,6 +34,15 @@ function Signup(props) {
         });
         const token = mutationResponse.data.createAccount.token;
         Auth.login(token);
+
+        const userMutationResponse = await addUser({
+            variables: {
+                name: formState.parentName,
+                password: formState.parentPassword,
+                role: 'Parent',
+                // age: formState.age,
+            },
+        });
         navigate('/addUser');
         window.location.reload();
     };
