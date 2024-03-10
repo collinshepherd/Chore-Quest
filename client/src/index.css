@@ -72,6 +72,8 @@ button:focus-visible {
     }
 }
 
-p, ol, .label {
+p,
+ol,
+.label {
     font-size: large;
 }

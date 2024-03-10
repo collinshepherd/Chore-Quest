@@ -47,7 +47,6 @@ const resolvers = {
             // referring to an individual account
             const familyId = context.user.familyId;
 
-            console.log(context.user);
             // Get and return a single account from the account collection
             return await Account.findOne({ _id: familyId })
                 .populate('users')
@@ -162,11 +161,20 @@ const resolvers = {
 
             return { user: newUser, token };
         },
-        addTask: async (parent, { taskName, assignedUser }) => {
+        addTask: async (parent, { taskName, assignedUser }, context) => {
             const newTask = await Task.create({
                 taskName: taskName,
                 assignedUser: assignedUser,
             });
+
+            await Account.findOneAndUpdate(
+                {
+                    _id: context.user.familyId,
+                },
+                {
+                    $push: { masterList: newTask._id },
+                }
+            );
 
             return newTask;
         },

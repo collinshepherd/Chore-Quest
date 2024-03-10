@@ -5,8 +5,19 @@ import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import '../style/pages.css';
+import AuthError from './AuthError';
 
 const UserLogin = () => {
+    // Checking if the user is logged in so then they can see the page
+    if (!Auth.loggedIn()) {
+        return (
+            <AuthError
+                message={
+                    'Login in to your account before trying to login to a user'
+                }
+            />
+        );
+    }
     const params = useParams();
 
     const [userFormData, setUserFormData] = useState({

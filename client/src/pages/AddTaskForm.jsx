@@ -11,8 +11,18 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import '../style/pages.css';
+import AuthError from './AuthError';
+import Auth from '../utils/auth';
 
 function AddTaskForm() {
+    // Checking if the user is logged in so then they can see the page
+    if (!Auth.loggedIn()) {
+        return (
+            <AuthError
+                message={'Login in to your account before trying to add a task'}
+            />
+        );
+    }
     // Keeping track of the form state
     const [formState, setFormState] = useState({
         taskName: '',

@@ -3,11 +3,19 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
-
 import { Form, Button, Card } from 'react-bootstrap';
 import '../style/pages.css';
+import AuthError from './AuthError';
 
 function AddUser(props) {
+    // Checking if the user is logged in so then they can see the page
+    if (!Auth.loggedIn()) {
+        return (
+            <AuthError
+                message={'Login in to your account before trying to add a user'}
+            />
+        );
+    }
     const [formState, setFormState] = useState({
         name: '',
         password: '',
