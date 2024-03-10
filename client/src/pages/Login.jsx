@@ -11,12 +11,19 @@ const LoginForm = () => {
         email: '',
         password: '',
     });
-    const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
-    // Adding the mutation for loginAccount
-    const [loginAccount, { error }] = useMutation(ACCOUNT_LOGIN);
 
     const navigate = useNavigate();
+
+    // Checking if the user is logged in and if so sending them to the users page
+    if (Auth.loggedIn()) {
+        window.location.href = '/users';
+    }
+
+    const [validated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    // Adding the mutation for loginAccount
+    const [loginAccount, { error }] = useMutation(ACCOUNT_LOGIN);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;

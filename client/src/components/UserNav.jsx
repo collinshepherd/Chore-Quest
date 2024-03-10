@@ -67,7 +67,7 @@ function UserNavigation() {
                                 onClick={() => {
                                     console.log('Logging Out');
                                     localStorage.clear();
-                                    window.location.reload();
+                                    this.forceUpdate();
                                 }}
                             >
                                 Logout

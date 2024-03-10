@@ -105,7 +105,7 @@ function AddTaskForm() {
                         </Form.Text>
                     </Form.Group>
                     <OverlayTrigger
-                        placement="right"
+                        placement="bottom"
                         delay={{ show: 250, hide: 400 }}
                         overlay={renderTooltip}
                     >
