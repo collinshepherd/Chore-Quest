@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Heading } from 'react-bulma-components';
 import '../style/Header.css';
+import ChoreQuestHeader from "/Users/alfredomercado/bootcamp/Chore-Quest/client/src/assets/images/ChoreQuest4.png";
 
 function Header() {
     return (
         <>
-            <Container className="header-container">
+        <img src={ChoreQuestHeader} style={{ height:"80%", width:"100%"}} />
+            {/* <Container className="header-container">
                 <Heading>
                     <header
                         className="abril-fatface-regular"
@@ -14,7 +16,7 @@ function Header() {
                         Chore Quest
                     </header>
                 </Heading>
-            </Container>
+            </Container> */}
         </>
     );
 }
