@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 import '../style/pages.css';
+import styled, { keyframes } from 'styled-components';
+import { fadeInLeft } from 'react-animations';
+
+const bounceAnimation = keyframes`${fadeInLeft}`;
+
+const BouncyDiv = styled.div`
+    animation: 2.5s ${bounceAnimation}`;
+;
 
 function Homepage() {
     return (
         <>
+        <BouncyDiv>
             <Card className='background-light'>
                 <h1>Welcome to Chore Quest!</h1>
                 <br />
@@ -46,6 +55,7 @@ function Homepage() {
                     </Col>
                 </Row>
             </Card>
+         </BouncyDiv>
         </>
     );
 }

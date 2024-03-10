@@ -75,7 +75,9 @@ const KidTaskList = () => {
                                         icon={faCheckCircle}
                                     />
                                     <div className="">
-                                        Task: {task.taskName} Assigned User:{' '}
+                                        Task: {task.taskName} 
+                                        <br />
+                                        Assigned User:{' '}
                                         {firstName}
                                     </div>
                                 </ListGroup.Item>
