@@ -178,6 +178,21 @@ const resolvers = {
 
             return newTask;
         },
+        completeTask: async (parent, { _id }) => {
+            const updatedTask = await Task.findOneAndUpdate(
+                {
+                    _id: _id,
+                },
+                {
+                    complete: true,
+                },
+                {
+                    new: true,
+                }
+            );
+
+            return updatedTask;
+        },
         deleteTask: async (parent, { _id }, context) => {
             const oldTask = await Task.findOneAndDelete({
                 _id: _id,
