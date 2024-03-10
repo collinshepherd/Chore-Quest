@@ -7,7 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { REMOVE_TASK } from '../utils/mutations';
+import { REMOVE_TASK, COMPLETE_TASK } from '../utils/mutations';
 
 const ParentProfile = () => {
     // Declaring variables to store tasks and users
@@ -74,6 +74,17 @@ const ParentProfile = () => {
         window.location.reload();
     }
 
+    const [completeTask] = useMutation(COMPLETE_TASK);
+
+    const FinishTask = async (id) => {
+        const mutationResponse = await completeTask({
+            variables: {
+                id: id,
+            }
+        })
+        window.location.reload();
+    }
+
     return (
         <>
             <Col sm={4}>
@@ -119,7 +130,7 @@ const ParentProfile = () => {
                                     className="d-flex justify-content-evenly justify-content-center"
                                 >
                                     <FontAwesomeIcon
-                                        onClick={() => deleteTask (task._id)}  
+                                        onClick={() => FinishTask (task._id)}  
                                         className="fs-2 align-self-center"
                                         icon={faCheckCircle}
                                     />
