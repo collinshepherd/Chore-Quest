@@ -62,6 +62,16 @@ export const ADD_TASK = gql`
     }
 `;
 
+export const COMPLETE_TASK = gql`
+    mutation Mutation($id: ID!) {
+        completeTask(_id: $id) {
+            _id
+            complete
+            taskName
+        }
+    }
+`;
+
 export const REMOVE_TASK = gql`
     mutation DeleteTask($id: ID!) {
         deleteTask(_id: $id) {
