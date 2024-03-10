@@ -63,16 +63,16 @@ const ParentProfile = () => {
         });
     }
 
-    // const [RemoveTask, { error }] = useMutation(REMOVE_TASK);
+    const [RemoveTask, { error }] = useMutation(REMOVE_TASK);
 
-    // const deleteTask = async (id) => {
-    //     const mutationResponse = await RemoveTask({
-    //         variables: {
-    //             id: id,
-    //         }
-    //     })
-    //     window.location.reload();
-    // }
+    const deleteTask = async (id) => {
+        const mutationResponse = await RemoveTask({
+            variables: {
+                id: id,
+            }
+        })
+        window.location.reload();
+    }
 
     return (
         <>
