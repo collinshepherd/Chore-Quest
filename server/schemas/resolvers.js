@@ -178,6 +178,22 @@ const resolvers = {
 
             return newTask;
         },
+        deleteTask: async (parent, { _id }, context) => {
+            const oldTask = await Task.findOneAndDelete({
+                _id: _id,
+            });
+
+            await Account.updateOne(
+                {
+                    _id: context.user.familyId,
+                },
+                {
+                    $pull: { masterList: _id },
+                }
+            );
+
+            return oldTask;
+        },
     },
 };
 
