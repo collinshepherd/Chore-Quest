@@ -42,7 +42,7 @@ function UserNavigation() {
         <>
             <Navbar expand="lg" style={{ backgroundColor: '#1B2021' }}>
                 <Container>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ backgroundColor: '#399e5a' }} />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link
