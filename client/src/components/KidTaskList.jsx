@@ -1,11 +1,12 @@
 import Auth from '../utils/auth';
 import { QUERY_USERS_TASK } from '../utils/queries';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Tab from 'react-bootstrap/Tab';
+import { COMPLETE_TASK } from '../utils/mutations';
 
 const KidTaskList = () => {
     const authToken = Auth.getProfile();
@@ -34,9 +35,16 @@ const KidTaskList = () => {
         role,
     } = authToken.data;
 
-    const deleteTask = (id) => {
-        console.log('delete this ID', id);
-    };
+    const [completeTask] = useMutation(COMPLETE_TASK);
+
+    const FinishTask = async (id) => {
+        const mutationResponse = await completeTask({
+            variables: {
+                id: id,
+            }
+        })
+        window.location.reload();
+    }
 
     return (
         <>
@@ -62,7 +70,7 @@ const KidTaskList = () => {
                                     className="d-flex justify-content-evenly"
                                 >
                                     <FontAwesomeIcon
-                                        onClick={() => deleteTask(task._id)}
+                                        onClick={() => FinishTask(task._id)}
                                         className="fs-2 "
                                         icon={faCheckCircle}
                                     />
@@ -70,11 +78,6 @@ const KidTaskList = () => {
                                         Task: {task.taskName} Assigned User:{' '}
                                         {firstName}
                                     </div>
-                                    <FontAwesomeIcon
-                                        onClick={() => deleteTask(task._id)}
-                                        className="fs-2 "
-                                        icon={faTrash}
-                                    />
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
