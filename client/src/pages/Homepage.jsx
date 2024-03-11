@@ -31,7 +31,11 @@ function Homepage() {
                         <h3>Already have a Chore Quest account?</h3>
                         <br />
                         <p>
-                            Ask your parents to "Login" and then choose your
+                            Ask your parents to
+                            <br />
+                            <Link to="login"> <Button className="w-100" variant="success">Login</Button></Link> 
+                             <br />
+                             and then choose your
                             name to start completing quests!
                         </p>
                     </Col>
@@ -45,8 +49,8 @@ function Homepage() {
                             <li>
                                 Create a household account by clicking 
                                 <br/>
-                                <Link to="/Signup"> <Button className="w-100" variant="success">"Sign
-                                Up".</Button></Link>
+                                <Link to="/Signup"> <Button className="w-100" variant="success">Sign
+                                Up</Button></Link>
                             </li>
                             <li>
                                 Add profiles for your children and spouse as
