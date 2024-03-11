@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError } = require('../utils/auth');
-
+const { GraphQLError } = require('graphql')
 const { mongoose } = require('mongoose');
 const ObjectId = mongoose.mongo.ObjectId;
 
@@ -70,6 +70,12 @@ const resolvers = {
     },
     Mutation: {
         createAccount: async (parent, { familyName, email, password }) => {
+            const emailExists = await Account.findOne({email})
+            // console.log(emailExists)
+            if (emailExists) {
+                throw new GraphQLError('Email already exists!', {})
+            }
+
             const newAccount = await Account.create({
                 familyName,
                 email,
