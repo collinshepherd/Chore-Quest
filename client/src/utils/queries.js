@@ -19,6 +19,15 @@ export const QUERY_USERS_ID_FROM_NAME = gql`
     }
 `;
 
+export const QUERY_USERS_NAME_FROM_ID = gql`
+    query Query($id: ID) {
+        User(_id: $id) {
+            _id
+            name
+        }
+    }
+`;
+
 export const QUERY_USERS_TASK = gql`
     query UserTasks {
         UserTasks {

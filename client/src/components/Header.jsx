@@ -1,12 +1,14 @@
 import React from 'react';
-import { Container, Heading } from 'react-bulma-components';
 import '../style/Header.css';
-import ChoreQuestHeader from "../assets/images/ChoreQuest4.png";
+import ChoreQuestHeader from '../assets/images/ChoreQuest4.png';
 
 function Header() {
     return (
         <>
-        <img src={ChoreQuestHeader} style={{ height:"80%", width:"100%"}} />
+            <img
+                src={ChoreQuestHeader}
+                style={{ height: '80%', width: '100%' }}
+            />
             {/* <Container className="header-container">
                 <Heading>
                     <header

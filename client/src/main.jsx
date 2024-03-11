@@ -18,6 +18,7 @@ import Error from './pages/Error';
 // This allows apollo to give more detailed error messages
 import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
 import Profile from './pages/Profile.jsx';
+import UserId from './pages/UserId.jsx';
 
 loadDevMessages();
 loadErrorMessages();
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />,
+            },
+            {
+                path: '/user/:userId',
+                element: <UserId />,
             },
             {
                 path: '/addTask',

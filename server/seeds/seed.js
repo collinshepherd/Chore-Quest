@@ -12,7 +12,6 @@ db.once('open', async () => {
     try {
         // Creating the new account
         const newAccount = await Account.insertMany(accountData);
-        console.log('new account', newAccount[0]._id);
 
         // Adding accountID to the users before they are created
         const updatedUsers = userData.map((user) => ({

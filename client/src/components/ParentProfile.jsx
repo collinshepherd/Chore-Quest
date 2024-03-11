@@ -1,5 +1,5 @@
 import { QUERY_USERS_IN_ACCOUNT, QUERY_ACCOUNT_TASKS } from '../utils/queries';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Button, Card, Row } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -7,6 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { REMOVE_TASK, COMPLETE_TASK } from '../utils/mutations';
 
 const ParentProfile = () => {
     // Declaring variables to store tasks and users
@@ -61,8 +62,27 @@ const ParentProfile = () => {
             }
         });
     }
-    const deleteTask = (id) => {
-        console.log('delete this ID', id);
+
+    const [RemoveTask, { error }] = useMutation(REMOVE_TASK);
+
+    const deleteTask = async (id) => {
+        const mutationResponse = await RemoveTask({
+            variables: {
+                id: id,
+            },
+        });
+        window.location.reload();
+    };
+
+    const [completeTask] = useMutation(COMPLETE_TASK);
+
+    const FinishTask = async (id) => {
+        const mutationResponse = await completeTask({
+            variables: {
+                id: id,
+            },
+        });
+        window.location.reload();
     };
 
     return (
@@ -103,14 +123,14 @@ const ParentProfile = () => {
                 </ListGroup>
                 <Tab.Content>
                     <Tab.Pane eventKey="#activeTasks">
-                        <ListGroup>
+                        <ListGroup key={'activeTasks'}>
                             {activeTasks.map((task) => (
                                 <ListGroup.Item
                                     key={task._id}
                                     className="d-flex justify-content-evenly justify-content-center"
                                 >
                                     <FontAwesomeIcon
-                                        onClick={() => deleteTask(task._id)}
+                                        onClick={() => FinishTask(task._id)}
                                         className="fs-2 align-self-center"
                                         icon={faCheckCircle}
                                     />
