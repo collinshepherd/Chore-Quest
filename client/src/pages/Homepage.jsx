@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import '../style/pages.css';
 import styled, { keyframes } from 'styled-components';
 import { fadeInLeft } from 'react-animations';
@@ -43,8 +43,10 @@ function Homepage() {
                         <br />
                         <ol>
                             <li>
-                                Create a household account by clicking "Sign
-                                Up".
+                                Create a household account by clicking 
+                                <br/>
+                                <Link to="/Signup"> <Button className="w-100" variant="success">"Sign
+                                Up".</Button></Link>
                             </li>
                             <li>
                                 Add profiles for your children and spouse as
