@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth.js';
 import { ADD_ACCOUNT, ADD_USER } from '../utils/mutations';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -17,23 +17,38 @@ function Signup(props) {
         parentName: '',
         parentPassword: '',
     });
+    const [registrationError, setRegistrationError] = useState(false)
     const [addAccount] = useMutation(ADD_ACCOUNT);
     const [addUser] = useMutation(ADD_USER);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (registrationError){
+        setRegistrationError(false)
+        }
+    }, [formState.email])
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        const mutationResponse = await addAccount({
+        try {
+            const mutationResponse = await addAccount({
             variables: {
                 email: formState.email.toLowerCase(),
                 password: formState.password,
                 familyName: formState.familyName,
-            },
-        });
-        const token = mutationResponse.data.createAccount.token;
-        Auth.login(token);
+                },
+            });
+
+            const token = mutationResponse.data.createAccount.token;
+            Auth.login(token);
+        } catch (err) {
+            if (err.message === 'Email already exists!') {
+                setRegistrationError(true)
+                return
+            }
+        }
+        
 
         const userMutationResponse = await addUser({
             variables: {
@@ -76,6 +91,15 @@ function Signup(props) {
         <Card className="background-light">
             <h2>Signup</h2>
             <Form onSubmit={handleFormSubmit} className="form-width">
+            <Alert
+                    dismissible
+                    onClose={() => setRegistrationError(false)}
+                    show={registrationError}
+                    variant="danger"
+                >
+                    This email is already associated with a Chore Quest account! <br/>
+                    Try logging in instead.
+                </Alert>
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="familyName" className="label">
                         Family Name
@@ -93,7 +117,7 @@ function Signup(props) {
                     <Form.Control
                         placeholder="Household Name"
                         name="familyName"
-                        type="familyName"
+                        type="text"
                         id="familyName"
                         onChange={handleChange}
                         required
@@ -142,15 +166,15 @@ function Signup(props) {
                     <Form.Control
                         placeholder="Parent"
                         name="parentName"
-                        type="parentName"
+                        type="text"
                         id="parentName"
                         onChange={handleChange}
                         required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="pwd" className="label">
-                        Parent Account Password
+                    <Form.Label htmlFor="pwd" className="label" >
+                        Parent Account Passcode
                         <OverlayTrigger
                             placement="bottom"
                             delay={{ show: 250, hide: 400 }}
@@ -163,9 +187,9 @@ function Signup(props) {
                         </OverlayTrigger>
                     </Form.Label>
                     <Form.Control
-                        placeholder="Parent Account Password"
+                        placeholder="****"
                         name="parentPassword"
-                        type="parentPassword"
+                        type="password"
                         id="parentPassword"
                         onChange={handleChange}
                         required
