@@ -89,7 +89,6 @@ const ParentProfile = () => {
         <>
             <Col sm={4}>
                 <ListGroup>
-                    {/* Currently user/userId does not exist as a path yet */}
                     {usersInAccount.map((user) => (
                         <Link key={user.id} to={`/user/${user.id}`}>
                             <Button

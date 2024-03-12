@@ -47,7 +47,7 @@ function Homepage() {
                         <br />
                         <ol>
                             <li>
-                                Ask you parent to create a household account by clicking 
+                                Ask your parent to create a household account by clicking 
                                 <br/>
                                 <Link to="/Signup"> <Button className="w-100" variant="success">Sign
                                 Up</Button></Link>
