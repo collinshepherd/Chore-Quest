@@ -73,7 +73,7 @@ const UserId = () => {
     return (
         <>
             <Card className="background-light">
-                <h1 className="m-1">{firstName}'s Tasks:</h1>
+                <h1 className="m-1">{firstName}'s Quests:</h1>
                 <Tab.Container
                     id="list-group-tabs-example"
                     defaultActiveKey="#activeTasks"

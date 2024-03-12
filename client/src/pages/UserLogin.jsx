@@ -81,7 +81,7 @@ const UserLogin = () => {
     };
     return (
         <Card className="background-light">
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="form-width">
                 <Alert
                     dismissible
                     onClose={() => setShowAlert(false)}
@@ -92,10 +92,10 @@ const UserLogin = () => {
                 </Alert>
 
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Label htmlFor="password">User Passcode</Form.Label>
                     <Form.Control
                         type="password"
-                        placeholder="Your password"
+                        placeholder="****"
                         name="password"
                         onChange={handleInputChange}
                         value={userFormData.password}

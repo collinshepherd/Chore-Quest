@@ -48,6 +48,7 @@ const KidTaskList = () => {
 
     return (
         <>
+            <h1 className="m-1">{firstName}'s Quests:</h1>
             <Col sm={4}>
                 <ListGroup>
                     <ListGroup.Item action href="#activeTasks" className="my-2 bg-success border border-black">

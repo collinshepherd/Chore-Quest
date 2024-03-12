@@ -60,7 +60,7 @@ function UserNavigation() {
                                 to="/users"
                                 style={{ color: 'white' }}
                             >
-                                Users
+                                Switch User
                             </Nav.Link>
                             {navBarRendering()}
                             <Nav.Link
