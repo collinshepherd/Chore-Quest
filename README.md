@@ -2,16 +2,16 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Are you tired of staring at your to-do list, feeling overwhelmed by chores? Welcome to the ultimate solution to transform mundane chores into thrilling adventures with your family! Maybe your family struggles to get all the chores done for the week
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+Here's how it works: simply create an account for your family and add members to the household, both kids and parents. Now you can add input your chores and assign them to a designated member of your family. Now these simple chores transform into thrilling personalized quests.
 
-## Table of Contents (Optional)
+Need to do the dishes? Conquer the Dishwashing Dungeon! 
+Have laundry to fold? Embark on the Great Laundry Expedition!
+Grass too tall? Battle back the Forest with your Spinning Blade of Fury!
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
+
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,43 +20,24 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Chore Quest has no installation requirements, simply navigate to the live URL on your preferred internet browser
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Follow the below URL to start your quest today!
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
+https://chore-quest-0f3d855c0443.herokuapp.com/
 
-![alt text](assets/images/screenshot.png)
+Below is a screenshot of Chore Quest's homepage:
+![Home Page Screenshot](assets/ChoreQuestHomeScreenshot.PNG)
+
+Below is a screenshot of an admin user's profile page on Chore Quest:
+![Profile Page Screenshot](assets/ChoreQuestProfileScreenshot.PNG)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+There are five contributors to Chore Quest: Alfredo Mercado, Andria Goodwin, Chris Brewer, Collin Shepherd, Nate McMahon
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
-
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-
-Badges aren't necessary, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute to it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+GMU (General Public License)
