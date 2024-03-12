@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import {
     QUERY_ACCOUNT_TASKS,
     QUERY_USERS_NAME_FROM_ID,
@@ -9,6 +9,8 @@ import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from '../utils/auth';
 import AuthError from './AuthError';
+import { REMOVE_TASK, COMPLETE_TASK } from '../utils/mutations';
+
 
 const UserId = () => {
     if (!Auth.loggedIn()) {
@@ -45,6 +47,28 @@ const UserId = () => {
         });
         firstName = data?.User.name;
     }
+    const [RemoveTask] = useMutation(REMOVE_TASK);
+
+    const deleteTask = async (id) => {
+        const mutationResponse = await RemoveTask({
+            variables: {
+                id: id,
+            },
+        });
+        window.location.reload();
+    };
+
+    const [completeTask] = useMutation(COMPLETE_TASK);
+
+    const FinishTask = async (id) => {
+        const mutationResponse = await completeTask({
+            variables: {
+                id: id,
+            },
+        });
+        window.location.reload();
+    };
+
 
     return (
         <>
@@ -84,13 +108,14 @@ const UserId = () => {
                                             >
                                                 <FontAwesomeIcon
                                                     onClick={() =>
-                                                        deleteTask(task._id)
+                                                        FinishTask(task._id)
                                                     }
                                                     className="fs-2 "
                                                     icon={faCheckCircle}
                                                 />
                                                 <div className="">
                                                     Task: {task.taskName}{' '}
+                                                    <br/>
                                                     Assigned User: {firstName}
                                                 </div>
                                                 <FontAwesomeIcon
@@ -109,7 +134,16 @@ const UserId = () => {
                                     <ListGroup>
                                         {completedTasks.map((task) => (
                                             <ListGroup.Item key={task._id}>
-                                                {task.taskName}
+                                                <div>
+                                                Task: {task.taskName}
+                                                </div>
+                                                <FontAwesomeIcon
+                                                    onClick={() =>
+                                                        deleteTask(task._id)
+                                                    }
+                                                    className="fs-2 "
+                                                    icon={faTrash}
+                                                />
                                             </ListGroup.Item>
                                         ))}
                                     </ListGroup>
