@@ -20,7 +20,7 @@ function Homepage() {
                 <p>
                     Chore Quest is an interactive way for kids to become more 
                     interested in doing their chores. They will be able to see 
-                    their assigned tasks and completed tasked, helping them 
+                    their assigned tasks and completed tasks, helping them 
                     learn to set and achieve their goals.
                 </p>
             </Card>
