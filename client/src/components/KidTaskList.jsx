@@ -50,10 +50,10 @@ const KidTaskList = () => {
         <>
             <Col sm={4}>
                 <ListGroup>
-                    <ListGroup.Item action href="#activeTasks" className="my-2">
+                    <ListGroup.Item action href="#activeTasks" className="my-2 bg-success border border-black">
                         Active Tasks
                     </ListGroup.Item>
-                    <ListGroup.Item action href="#completedTasks">
+                    <ListGroup.Item action href="#completedTasks" className='bg-success border border-black'>
                         Completed Tasks
                     </ListGroup.Item>
                 </ListGroup>
@@ -76,9 +76,6 @@ const KidTaskList = () => {
                                     />
                                     <div className="">
                                         Task: {task.taskName} 
-                                        <br />
-                                        Assigned User:{' '}
-                                        {firstName}
                                     </div>
                                 </ListGroup.Item>
                             ))}

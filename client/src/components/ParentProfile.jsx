@@ -107,7 +107,7 @@ const ParentProfile = () => {
                     <ListGroup.Item
                         action
                         href="#activeTasks"
-                        className="my-2"
+                        className="my-2 bg-success border border-black"
                         key="activeTasks"
                     >
                         Active Tasks
@@ -116,20 +116,21 @@ const ParentProfile = () => {
                         action
                         key="completedTasks"
                         href="#completedTasks"
-                        className="my-2"
+                        className="my-2 bg-success border border-black"
                     >
                         Completed Tasks
                     </ListGroup.Item>
                 </ListGroup>
                 <Tab.Content>
                     <Tab.Pane eventKey="#activeTasks">
-                        <ListGroup key={'activeTasks'}>
+                        <ListGroup>
                             {activeTasks.map((task) => (
                                 <ListGroup.Item
                                     key={task._id}
                                     className="d-flex justify-content-evenly justify-content-center"
                                 >
                                     <FontAwesomeIcon
+                                        key={task.assignedUser}
                                         onClick={() => FinishTask(task._id)}
                                         className="fs-2 align-self-center"
                                         icon={faCheckCircle}
@@ -139,6 +140,7 @@ const ParentProfile = () => {
                                         Assigned User: {task.name}
                                     </div>
                                     <FontAwesomeIcon
+                                        key={task.name}
                                         onClick={() => deleteTask(task._id)}
                                         className="fs-2 align-self-center"
                                         icon={faTrash}
@@ -148,11 +150,21 @@ const ParentProfile = () => {
                         </ListGroup>
                     </Tab.Pane>
                     <Tab.Pane eventKey="#completedTasks">
-                        <ListGroup>
+                        <ListGroup key="completedTasks">
                             {completedTasks.map((task) => (
-                                <ListGroup.Item key={task._id}>
+                                <ListGroup.Item
+                                key={task._id}
+                                className="d-flex justify-content-evenly justify-content-center"
+                            >
+                                    <div>
                                     Task: {task.taskName} <br /> Assigned User:{' '}
                                     {task.name}
+                                    </div>
+                                    <FontAwesomeIcon
+                                        onClick={() => deleteTask(task._id)}
+                                        className="fs-2 align-self-center"
+                                        icon={faTrash}
+                                    />
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
