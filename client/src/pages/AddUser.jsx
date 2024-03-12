@@ -151,7 +151,7 @@ function AddUser(props) {
                                 <Button
                                     type="submit"
                                     variant="dark"
-                                    className="label"
+                                    className="label bg-success border border-black"
                                 >
                                     Create Profile
                                 </Button>

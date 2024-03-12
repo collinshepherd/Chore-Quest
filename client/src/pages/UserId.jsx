@@ -60,11 +60,11 @@ const UserId = () => {
                                 <ListGroup.Item
                                     action
                                     href="#activeTasks"
-                                    className="my-2"
+                                    className="my-2 bg-success border border-black"
                                 >
                                     Active Tasks
                                 </ListGroup.Item>
-                                <ListGroup.Item action href="#completedTasks">
+                                <ListGroup.Item action href="#completedTasks" className='bg-success border border-black'>
                                     Completed Tasks
                                 </ListGroup.Item>
                             </ListGroup>

@@ -127,7 +127,7 @@ function AddTaskForm() {
                         ))}
                     </Form.Select>
 
-                    <Button variant="dark" type="submit" className="my-2 label">
+                    <Button variant="dark" type="submit" className="my-2 label bg-success border border-black">
                         Add Task
                     </Button>
                 </Form>
