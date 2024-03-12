@@ -34,7 +34,9 @@ const UserId = () => {
     const { loading, error, data: taskData } = useQuery(QUERY_ACCOUNT_TASKS);
     if (!loading) {
         taskList = taskData?.Account.masterList;
-        taskList.forEach((task) => {
+        console.log(taskList, params.userId);
+        const userTasks = taskList.filter((task ) => task.assignedUser === params.userId)
+        userTasks.forEach((task) => {
             if (task.complete) {
                 completedTasks.push(task);
             } else {
