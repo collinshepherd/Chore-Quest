@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { REMOVE_TASK, COMPLETE_TASK } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const ParentProfile = () => {
     // Declaring variables to store tasks and users
@@ -15,6 +16,7 @@ const ParentProfile = () => {
     let activeTasks = [];
     let completedTasks = [];
     let usersInAccount = [];
+    const { data: tokenData } = Auth.getProfile();
     // Query for all users in the account
     const {
         loading: usersLoading,
@@ -87,6 +89,7 @@ const ParentProfile = () => {
 
     return (
         <>
+            <h1 className="m-1">{tokenData.firstName}'s Profile:</h1>
             <Col sm={4}>
                 <ListGroup>
                     {usersInAccount.map((user) => (
