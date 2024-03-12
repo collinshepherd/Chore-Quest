@@ -67,7 +67,6 @@ const UserLogin = () => {
             }
             // Assign the token
             const token = response.data.userLogin.token;
-            console.log(token);
 
             Auth.login(token);
             navigate('/profile');

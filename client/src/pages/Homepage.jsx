@@ -18,10 +18,10 @@ function Homepage() {
                 <h1>Welcome to Chore Quest!</h1>
                 <br />
                 <p>
-                    Chore Quest is an interactive way for kids to become more
-                    interested in doing their chores by incentivising each
-                    chore. They will be able to see their progress and potential
-                    rewards, helping them learn to set and achieve their goals.
+                    Chore Quest is an interactive way for kids to become more 
+                    interested in doing their chores. They will be able to see 
+                    their assigned tasks and completed tasked, helping them 
+                    learn to set and achieve their goals.
                 </p>
             </Card>
             <br />
@@ -47,13 +47,13 @@ function Homepage() {
                         <br />
                         <ol>
                             <li>
-                                Create a household account by clicking 
+                                Ask you parent to create a household account by clicking 
                                 <br/>
                                 <Link to="/Signup"> <Button className="w-100" variant="success">Sign
                                 Up</Button></Link>
                             </li>
                             <li>
-                                Add profiles for your children and spouse as
+                                Add profiles for parents and children as
                                 applicable.
                             </li>
                             <li>Start adding chores to your Quest List.</li>
